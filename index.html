@@ -257,21 +257,25 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>LivePerson provides a unified messaging platform for connecting your consumers with human agents and bot automations. As part of our open platform, we provide a growing number of out-of-the-box connectors, e.g., for SMS, Facebook Messenger, WhatsApp, and more. Please see <strong>here</strong> for a complete list of standard connectors available today. </p>
+<p>LivePerson Messaging connects your consumers with human agents or bot automations. As part of our open platform, we provide a growing number of out-of-the-box connectors, e.g., for SMS <a href="https://developers.liveperson.com/sms-with-liveengage-overview.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>, Facebook Messenger, WhatsApp, and others . In cases where an out-of-the-box connector is not available you can use LivePerson&#39;s APIs to build a custom connector.</p>
 
-<p>In cases where an out-of-the-box connector is not available you have the opportunity to build your own custom connector.</p>
+<p>This guide includes examples in shell script, javascript, and python to help you get up and running quickly. If you are using Postman you can download a collection <strong>here</strong></p>
 
 <aside class="success">
 If you are not sure if you need to build a custom connector, contact your account manager to discuss the best solution fit for your application!
 </aside>
-
-<p>This guide includes examples in different programming languages to help you get up and running quickly. If you are using Postman you can download a collection <strong>here</strong></p>
 <h1 id='use-cases'>Use Cases</h1>
-<p>A common use case for building a connector to LiveEngage Messaging are SMS Gateway integrations. LivePerson offers a SMS Twilio connector out-of-the-box, which is an excellent solution for most applications. However, you may have your own SMS Gateway or a custom Messaging app to integrate with the LiveEngage platform.</p>
+<p>A common use case for building a connector to LiveEngage Messaging are SMS Gateway integrations. LivePerson offers a SMS Twilio connector out-of-the-box, which is an excellent solution for most applications. However, you may have your own chat or messaging application to integrate with the LiveEngage platform:</p>
 
-<p>Connectors are exclusively server-side applications. If you are looking to build your own client-side application, please refer to the Messaging Window API documentation.</p>
+<ul>
+<li>Messaging connector for a custom SMS gateway or similar</li>
+<li>Server-side connector to integrate a proprietray chat window to LiveEngage Messaging</li>
+<li>Server-side connector for a mobile application when the LivePerson Mobile SDK is not applicable </li>
+</ul>
+
+<p>Connectors are server applications. If you are planning to build a client application, please refer to the Messaging Window API documentation.</p>
 <h1 id='core-concepts'>Core concepts</h1>
-<p>LiveEngage Messaging is built around conversations. When a consumer first connects, they will do so by creating a conversation. A new conversation is assigned to an agent or bot. Not every Messaging app has a notion of conversation&mdash; in the case of SMS messages are of exchanged in a sequence. </p>
+<p>Messaging is centered around conversations. When a consumer first connects to LiveEngage, they will do so by creating a conversation. A new conversation is assigned to an agent or bot. Not every Messaging app has a notion of conversation&mdash; in the case of SMS messages are of exchanged in a sequence. </p>
 
 <p>Conversations can be created or closed, and one consumer can only have one open conversation at a time. Agents and bots, on the other hand, can respond to multiple conversations. A conversation is closed when it ends, e.g., the agent has resolved the case and closes the conversation. There are also cases when a conversation is closed automatically, for example, when a consumer is no longer responding (&#39;auto close&#39;). Conversations can be split into dialogs of different types. The &#39;main&#39; dialog is the one that holds the actual messaging exchange, however, depending on the application there could be more dialog types such as CoBrowse or Survey.</p>
 
@@ -295,35 +299,35 @@ In the remainder of this tutorial, the LivePerson APIs listed below will be intr
 
 <table><thead>
 <tr>
-<th>API name</th>
-<th>Purpose</th>
-<th>API docs</th>
+<th>LivePerson API</th>
+<th>Description</th>
+<th>Link</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>Connector API</td>
 <td>Send and receive messages on behalf of consumers</td>
-<td><a href="https://developers.liveperson.com/connector-api-first-steps-overview.html">API docs</a></td>
+<td><a href="https://developers.liveperson.com/connector-api-first-steps-overview.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a></td>
 </tr>
 <tr>
 <td>Domain API</td>
 <td>Retrieve domains for API services, e.g., authentication</td>
-<td><a href="https://developers.liveperson.com/agent-domain-domain-api.html">API docs</a></td>
+<td><a href="https://developers.liveperson.com/agent-domain-domain-api.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a></td>
 </tr>
 <tr>
 <td>File Sharing API</td>
 <td>Upload images and other media to to storage for file sharing</td>
-<td><a href="https://developers.liveperson.com/file-sharing-file-sharing-for-web-messaging.html">API docs</a></td>
+<td><a href="https://developers.liveperson.com/file-sharing-file-sharing-for-web-messaging.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a></td>
 </tr>
 <tr>
 <td>Monitoring API</td>
 <td>Create visitor and session id to provide additional conversation context</td>
-<td><a href="https://developers.liveperson.com/monitoring-api-overview.html">API docs</a></td>
+<td><a href="https://developers.liveperson.com/monitoring-api-overview.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a></td>
 </tr>
 <tr>
 <td>Consumer Messaging History API</td>
 <td>Query current and past conversations of a consumer</td>
-<td><a href="https://developers.liveperson.com/consumer-messaging-history-api-overview.html">API docs</a></td>
+<td><a href="https://developers.liveperson.com/consumer-messaging-history-api-overview.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a></td>
 </tr>
 </tbody></table>
 
