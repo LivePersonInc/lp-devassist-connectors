@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Documentation</title>
+    <title>Getting started with Connector API</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -198,10 +198,10 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all_nosearch.js"></script>
+      <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -210,87 +210,312 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
-          </li>
-          <li>
-            <a href="#use-cases" class="toc-h1 toc-link" data-title="Use Cases">Use Cases</a>
-          </li>
-          <li>
-            <a href="#core-concepts" class="toc-h1 toc-link" data-title="Core concepts">Core concepts</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#use-cases" class="toc-h2 toc-link" data-title="Use Cases">Use Cases</a>
+                  </li>
+                  <li>
+                    <a href="#about-messaging" class="toc-h2 toc-link" data-title="About Messaging">About Messaging</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#prerequisites" class="toc-h1 toc-link" data-title="Prerequisites">Prerequisites</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#install-a-liveperson-app" class="toc-h2 toc-link" data-title="Install a LivePerson app">Install a LivePerson app</a>
+                    <a href="#install-an-application" class="toc-h2 toc-link" data-title="Install an application">Install an application</a>
                   </li>
                   <li>
-                    <a href="#set-up-a-webhook-endpoint-for-development" class="toc-h2 toc-link" data-title="Set up a WebHook endpoint for development">Set up a WebHook endpoint for development</a>
+                    <a href="#modify-the-endpoint-urls" class="toc-h2 toc-link" data-title="Modify the endpoint URLs">Modify the endpoint URLs</a>
+                  </li>
+                  <li>
+                    <a href="#required-and-optional-apis" class="toc-h2 toc-link" data-title="Required and optional APIs">Required and optional APIs</a>
                   </li>
               </ul>
-          </li>
-          <li>
-            <a href="#required-liveperson-apis" class="toc-h1 toc-link" data-title="Required LivePerson APIs">Required LivePerson APIs</a>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#request-a-jwt" class="toc-h2 toc-link" data-title="Request a JWT">Request a JWT</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#jwt-expiration" class="toc-h2 toc-link" data-title="JWT expiration">JWT expiration</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#use-a-jwt" class="toc-h2 toc-link" data-title="Use a JWT">Use a JWT</a>
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#consumer-identity" class="toc-h1 toc-link" data-title="Consumer identity">Consumer identity</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#retrieve-a-jws" class="toc-h2 toc-link" data-title="Retrieve a JWS">Retrieve a JWS</a>
+                  </li>
+                  <li>
+                    <a href="#request-2" class="toc-h2 toc-link" data-title="Request">Request</a>
+                  </li>
+                  <li>
+                    <a href="#response-2" class="toc-h2 toc-link" data-title="Response">Response</a>
+                  </li>
+                  <li>
+                    <a href="#use-the-jws" class="toc-h2 toc-link" data-title="Use the JWS">Use the JWS</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#conversation" class="toc-h1 toc-link" data-title="Conversation">Conversation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-conversation" class="toc-h2 toc-link" data-title="Create a conversation">Create a conversation</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-conversation-with-skill-routing" class="toc-h2 toc-link" data-title="Create a conversation with skill routing">Create a conversation with skill routing</a>
+                  </li>
+                  <li>
+                    <a href="#close-conversation" class="toc-h2 toc-link" data-title="Close conversation">Close conversation</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#send-a-message" class="toc-h1 toc-link" data-title="Send a message">Send a message</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#request-5" class="toc-h2 toc-link" data-title="Request">Request</a>
+                  </li>
+                  <li>
+                    <a href="#https-headers-3" class="toc-h2 toc-link" data-title="HTTPS headers">HTTPS headers</a>
+                  </li>
+                  <li>
+                    <a href="#payload-3" class="toc-h2 toc-link" data-title="Payload">Payload</a>
+                  </li>
+                  <li>
+                    <a href="#response-5" class="toc-h2 toc-link" data-title="Response">Response</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#send-a-media-file" class="toc-h1 toc-link" data-title="Send a media file">Send a media file</a>
+          </li>
+          <li>
+            <a href="#listen-to-notifications" class="toc-h1 toc-link" data-title="Listen to notifications">Listen to notifications</a>
+          </li>
+          <li>
+            <a href="#message-history" class="toc-h1 toc-link" data-title="Message history">Message history</a>
+          </li>
+          <li>
+            <a href="#use-client-features" class="toc-h1 toc-link" data-title="Use client features">Use client features</a>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
       </ul>
+        <ul class="toc-footer">
+            <li><a href='https://developers.liveperson.com'>LivePerson Developer Portal</a></li>
+            <li><a href='https://knowledge.liveperson.com'>LivePerson Knowledge Center</a></li>
+        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>LivePerson Messaging connects your consumers with human agents or bot automations. As part of our open platform, we provide a growing number of out-of-the-box connectors, e.g., for SMS <a href="https://developers.liveperson.com/sms-with-liveengage-overview.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>, Facebook Messenger, WhatsApp, and others . In cases where an out-of-the-box connector is not available you can use LivePerson&#39;s APIs to build a custom connector.</p>
-
-<p>This guide includes examples in shell script, javascript, and python to help you get up and running quickly. If you are using Postman you can download a collection <strong>here</strong></p>
-
-<aside class="success">
-If you are not sure if you need to build a custom connector, contact your account manager to discuss the best solution fit for your application!
-</aside>
-<h1 id='use-cases'>Use Cases</h1>
-<p>A common use case for building a connector to LiveEngage Messaging are SMS Gateway integrations. LivePerson offers a SMS Twilio connector out-of-the-box, which is an excellent solution for most applications. However, you may have your own chat or messaging application to integrate with the LiveEngage platform:</p>
+<p>Messaging connects your customers with human agents or bots. A key component is enabling conversations across Messaging apps&mdash;go where your customers are. As part of LivePerson&#39;s open platform we provide a growing number of out-of-the-box connectors, e.g., for SMS <a href="https://developers.liveperson.com/sms-with-liveengage-overview.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>, Facebook Messenger, WhatsApp, and others. In cases where an out-of-the-box solution is not available you can use LivePerson&#39;s APIs to build a custom connector.</p>
+<h2 id='use-cases'>Use Cases</h2>
+<p>A common use case for building your own connector to LiveEngage Messaging is SMS integration. LivePerson offers a SMS Twilio connector out-of-the-box, which is an excellent solution for most use cases. However, there are other cases where you want to use another SMS Gateway or similar:</p>
 
 <ul>
-<li>Messaging connector for a custom SMS gateway or similar</li>
-<li>Server-side connector to integrate a proprietray chat window to LiveEngage Messaging</li>
-<li>Server-side connector for a mobile application when the LivePerson Mobile SDK is not applicable </li>
+<li>Integrate a custom SMS gateway.</li>
+<li>Integrate a proprietray chat window.</li>
+<li>Integrate a mobile application when the LivePerson Mobile SDK is not applicable. </li>
 </ul>
 
-<p>Connectors are server applications. If you are planning to build a client application, please refer to the Messaging Window API documentation.</p>
-<h1 id='core-concepts'>Core concepts</h1>
-<p>Messaging is centered around conversations. When a consumer first connects to LiveEngage, they will do so by creating a conversation. A new conversation is assigned to an agent or bot. Not every Messaging app has a notion of conversation&mdash; in the case of SMS messages are of exchanged in a sequence. </p>
+<p>Connectors are <strong>server applications</strong>. If you are planning to build a client-side application, please refer to the Messaging Window API <a href="https://developers.liveperson.com/messaging-window-api-overview.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>.</p>
 
-<p>Conversations can be created or closed, and one consumer can only have one open conversation at a time. Agents and bots, on the other hand, can respond to multiple conversations. A conversation is closed when it ends, e.g., the agent has resolved the case and closes the conversation. There are also cases when a conversation is closed automatically, for example, when a consumer is no longer responding (&#39;auto close&#39;). Conversations can be split into dialogs of different types. The &#39;main&#39; dialog is the one that holds the actual messaging exchange, however, depending on the application there could be more dialog types such as CoBrowse or Survey.</p>
+<aside class="success">
+If you are not sure about developing a connector, please contact your account team to discuss the best solution fit for your use case!
+</aside>
+<h2 id='about-messaging'>About Messaging</h2>
+<p>Messaging is centered around <span class="TooltipTrigger" data-tooltips="A conversation is an interactive communication between customer and  agent/bot. Its participants are exchanging text messages or other media. Messaging conversations are asynchronous by default. Synchronous interactions such as voice and video interactions are supported as well." data-position="OnBottom">conversations</span>. When a customer first connects to LiveEngage, they will do so by creating a conversation. A new conversation is assigned to an agent or bot. Not every Messaging app has a notion of conversation&mdash;in the case of SMS messages are of exchanged in a sequence. </p>
 
-<p>Consumers, agents, agent managers, or bots are all identifiable participants in a conversation. Often consumers are not only introduced using an ID but carry additional information, such as name and contact data. This information is sent by using <abbr title="In order to collect specific consumer information such as product viewed, purchase information, errors the visitor encountered, and search results, you can send this information by using Engagement Attributes.">Engagement Attributes</abbr>. </p>
-<h1 id='prerequisites'>Prerequisites</h1>
-<p>Before getting started please make sure that Messaging is configured for your account, and a campaign with engagement is set up. Follow <strong>this guide</strong> for more details.</p>
+<p>Conversations can be created or closed, and each customer can only have one open conversation at a time. Agents and bots, on the other hand, can respond to multiple conversations. A conversation is closed when it ends, e.g., the agent has resolved the case and closes the conversation. There are also cases when a conversation is closed automatically, for example, when a customer is no longer responding (&#39;auto close&#39;). Conversations can be split into dialogs of different types. The &#39;main&#39; dialog is the one that holds the actual messaging exchange, however, depending on the application there could be more dialog types such as CoBrowse or Survey.</p>
 
-<p>Filesharing enabled and tested (if used)</p>
+<p>Customers, agents, agent managers, or bots are all identifiable participants in a conversation. Often customers are not only introduced using an ID but carry additional information, such as name and contact data. This information is sent by using 
+ <span class="TooltipTrigger" data-tooltips="Engagement Attributes are specific customer information such as product viewed, purchase information, errors the visitor encountered, and search results. They can be collected before or during a conversation." data-position="OnBottom">Engagement Attributes</span>.</p>
 
-<p>Installing an app</p>
-<h2 id='install-a-liveperson-app'>Install a LivePerson app</h2>
-<p>If the initial app was deployed you can change the configuration of your webhook endpoints as self-service using the Sample Connector app (requires admin permissions)</p>
-<h2 id='set-up-a-webhook-endpoint-for-development'>Set up a WebHook endpoint for development</h2>
-<p>WebHook endpoint</p>
-<h1 id='required-liveperson-apis'>Required LivePerson APIs</h1>
+<p>HTML native tooltips: <abbr title="In order to collect specific customer information such as product viewed, purchase information, errors the visitor encountered, and search results, you can send this information by using Engagement Attributes.">Engagement Attributes</abbr>. </p>
+<h1 id='prerequisites'>Prerequisites</h1><h2 id='install-an-application'>Install an application</h2>
+<blockquote>
+<p>Manifest example (JSON):</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "client_name": "App name",
+  "description": "App description",
+  "grant_types": [
+    "client_credentials"
+  ],
+  "scope": "msg.consumer",
+  "capabilities": {
+    "webhooks": {
+      "ms.MessagingEventNotification.ContentEvent": {
+        "endpoint": "https://your/webhooks/endpoint",
+        "max_retries": 5
+      },
+      "ms.MessagingEventNotification.RichContentEvent": {
+        "endpoint": "https://your/webhooks/endpoint",
+        "max_retries": 5
+      },
+      "ms.MessagingEventNotification.AcceptStatusEvent": {
+        "endpoint": "https://your/webhooks/endpoint",
+        "max_retries": 5
+      },
+      "ms.MessagingEventNotification.ChatStateEvent": {
+        "endpoint": "https://your/webhooks/endpoint",
+        "max_retries": 5
+      },
+      "cqm.ExConversationChangeNotification": {
+        "endpoint": "https://your/webhooks/endpoint",
+        "max_retries": 5
+      }
+    },
+    "engagement": {
+      "design_engagement": false,
+      "design_window": false,
+      "entry_point": [
+        "section"
+      ],
+      "visitor_behavior": [
+        "visited_location",
+        "time_on_location",
+        "flow",
+        "engaged_in_session",
+        "about_to_abandon",
+        "cart_value",
+        "cart_items",
+        "visitor_error",
+        "viewed_products",
+        "service_activity"
+      ],
+      "target_audience": [
+        "external_referral",
+        "search_keywords",
+        "ip",
+        "platform",
+        "geo_location",
+        "returning_visitors",
+        "marketing_source",
+        "customer_type",
+        "age",
+        "balance",
+        "customer_id",
+        "gender",
+        "store_zip_code",
+        "store_number",
+        "company_size",
+        "registration_date"
+      ],
+      "goal": [
+        "url",
+        "purchase_total",
+        "num_of_pages",
+        "lead",
+        "service_activity"
+      ],
+      "consumer_identity": [
+        "auth"
+      ],
+      "language_selection": false
+    }
+  }
+}
+</code></pre>
+<p>The Connector API uses JSON Web Tokens (JWT) allow access to the API. The JWTs are requested using obtain <code>clientId</code> and <code>clientSecret</code>. In order to obtain these intitially you have to register a new LiveEngage application.</p>
+
+<aside class="warning">
+Please reach out to your account team for first-time installation. Stay tuned for self-service installation in the near future!
+</aside>
+
+<p>Your application is installed using a manifest specified in JSON. An example manifest is shown on the right. The following attibutes should be defined:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_name</td>
+<td>Name of your connector application</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Client secret of your installed application</td>
+<td>No</td>
+</tr>
+<tr>
+<td>webhook</td>
+<td>Defines the webhook configuration of your application</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>endpoint</td>
+<td>Defines the URL of your webhook endpoint. Must start with HTTPS.</td>
+<td>Yes. The notification types are optional.</td>
+</tr>
+<tr>
+<td>max_retries</td>
+<td>Number of retries if a notification cannot be delivered to your Webhook endpoint. Max = 5.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>engagement</td>
+<td>Defines an engagement for your application that will later be used in a campaign</td>
+<td>Recommended for reporting</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+The parameter `client_name` will be visible to the agent as the source of the conversation in the Consumer Info widget.
+</aside>
+
+<p>After filling in the JSON Template with the required data, please contact your Account Management team to register your connector application.</p>
+<h3 id='result'>Result</h3>
+<p>If the application installation is successful you will receive the client id token and the client secret token, which is confidential:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_id</td>
+<td>Client id obtained of your installed application.</td>
+</tr>
+<tr>
+<td>client_secret</td>
+<td>Client secret of your installed application.</td>
+</tr>
+</tbody></table>
+<h2 id='modify-the-endpoint-urls'>Modify the endpoint URLs</h2>
+<p>Once the inital application manifest has been deployed and you have <code>client_id</code> and <code>client_secret</code> you can login to the Demo Connector <a href="https://connector-api.dev.liveperson.net/"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a> with admin privileges and change the URLs of your webhook endpoints. </p>
+
+<aside class="success">
+The demo connector requires admin privileges to change a Webhook configuration.
+</aside>
+<h2 id='required-and-optional-apis'>Required and optional APIs</h2>
 <p>Implementing a custom connector requires several LivePerson APIs&mdash;depending on functional scope of your server application. Most of the required functionality is covered by Connector API, which is responsible for receiving and sending messages. Consumer messages are encoded as JSON and sent via HTTPS. If an agent or bot answers a notification is sent to your configured Webhook endpoint.</p>
 
 <aside class="info">
@@ -335,181 +560,653 @@ In the remainder of this tutorial, the LivePerson APIs listed below will be intr
  The Domain API is used for retrieving service domains, e.g., for authentication servers and for sending messages. For development purposes domains can be retrieved once, however, server domains can be subject to change.
 </aside>
 <h1 id='authentication'>Authentication</h1>
+<p>The Connector API uses JWTs (JSON Web Token) to control access to the API. After you have obtained a <code>clientId</code> and <code>clientSecret</code> by installing an application manifest, you can use these to obtain a secure token, which is subsequently used in all Connector API requests. This token is a JSON Web Token (JWT). A JWT gives you the permission to send messages on behalf of consumers within a LiveEngage account. JWTs are only valid for a specific account and limited time duration.</p>
+
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>To authenticate, use this code:</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+https://<span class="k">${</span><span class="nv">authDomain</span><span class="k">}</span>/sentinel/api/account/<span class="k">${</span><span class="nv">accountId</span><span class="k">}</span>/app/token?<span class="se">\</span>
+<span class="nv">v</span><span class="o">=</span>1.0&amp;grant_type<span class="o">=</span>client_credentials&amp;client_id<span class="o">=</span><span class="k">${</span><span class="nv">clientId</span><span class="k">}</span>&amp;client_secret<span class="o">=</span><span class="k">${</span><span class="nv">clientSecret</span><span class="k">}</span> <span class="se">\</span>
+  -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"request"</span><span class="p">);</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code>${accountId}</code>, <code>${clientId}</code>, and <code>${clientId}</code> with your keys.</p>
+
+<p>You receive a response like this:</p>
 </blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<pre class="highlight shell tab-shell"><code><span class="o">{</span>
+    <span class="s2">"access_token"</span>: <span class="s2">"eyJraWQiOiJhcHBqd3QtMTMtMDUtMTciLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1MzEzODQ2IiwiYXpwIjoiODJjNzMwNTMtZDc2My00NzUxLTkyNTYtZjNhNzk5YmM1NGM0Iiwic2NvcGUiOiJtc2cuY29uc3VtZXIiLCJpc3MiOiJTZW50aW5lbCIsImV4cCI6MTU1Mjg5OTM3OSwiaWF0IjoxNTUyODk1Nzc5fQ.rbnof2fWnMxFsubazxcGuAqxj04fwp4MgIgh3FjBv1pFoYmXOxCGjrq62x3SIab2Mp4pLdaWKI6UktatIsWK6cNnTvdJ_NQGE4I-8zC-fMk5fRp1CVFbVjxz0bgPeGPVzpWbgJGmhDVQMuqc2rGI8Rk9uP_aRwFDVPVZDOZ1AtAbGMigdjy7tdBD7Lr4w4vvMT6XW7lhHT0MJLJCQLACYAXbM0Q8ZLovq7vk2f-37BiHknP5LmAS1L_jRIL2encOINslYPNTjrPSEusKlJE2qpzbqvBFNlQlg62vzmdAj0xKKglmfOGdNHkKDEgH6haimxxN_LmzIN99Ew0I1ocJWg"</span>,
+    <span class="s2">"token_type"</span>: <span class="s2">"Bearer"</span>
+<span class="o">}</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"access_token"</span><span class="p">:</span> <span class="s2">"eyJraWQiOiJhcHBqd3QtMTMtMDUtMTciLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1MzEzODQ2IiwiYXpwIjoiODJjNzMwNTMtZDc2My00NzUxLTkyNTYtZjNhNzk5YmM1NGM0Iiwic2NvcGUiOiJtc2cuY29uc3VtZXIiLCJpc3MiOiJTZW50aW5lbCIsImV4cCI6MTU1Mjg5OTM3OSwiaWF0IjoxNTUyODk1Nzc5fQ.rbnof2fWnMxFsubazxcGuAqxj04fwp4MgIgh3FjBv1pFoYmXOxCGjrq62x3SIab2Mp4pLdaWKI6UktatIsWK6cNnTvdJ_NQGE4I-8zC-fMk5fRp1CVFbVjxz0bgPeGPVzpWbgJGmhDVQMuqc2rGI8Rk9uP_aRwFDVPVZDOZ1AtAbGMigdjy7tdBD7Lr4w4vvMT6XW7lhHT0MJLJCQLACYAXbM0Q8ZLovq7vk2f-37BiHknP5LmAS1L_jRIL2encOINslYPNTjrPSEusKlJE2qpzbqvBFNlQlg62vzmdAj0xKKglmfOGdNHkKDEgH6haimxxN_LmzIN99Ew0I1ocJWg"</span><span class="p">,</span>
+    <span class="s2">"token_type"</span><span class="p">:</span> <span class="s2">"Bearer"</span>
+<span class="p">}</span>
+</code></pre><h3 id='request-a-jwt'>Request a JWT</h3>
+<p><strong>POST</strong> https://${authDomain}/sentinel/api/account/${accountId}/app/token?v=1.0
+&amp;grant_type=client_credentials&amp;client_id=${clientId}&amp;client_secret=${clientSecret}</p>
+<h4 id='headers'>Headers</h4>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+</tbody></table>
+<h4 id='request'>Request</h4>
+<table><thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>authDomain</td>
+<td>CSDS domain of authentication service &#39;sentinel&#39;</td>
+<td>true</td>
+</tr>
+<tr>
+<td>brandId</td>
+<td>Your account id</td>
+<td>true</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>Client id obtained of your installed application.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>clientSecret</td>
+<td>Client secret of your installed application.</td>
+<td>true</td>
+</tr>
+</tbody></table>
+<h4 id='response'>Response</h4>
+<p>If the login is successful the connector receives a HTTPS 200 response. </p>
+
+<table><thead>
+<tr>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>access_token</td>
+<td>JWT</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>token_type</td>
+<td>Type of the token, i.e., Bearer</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+Remember — manage your client keys and JWT securely!
+</aside>
+
+<blockquote>
+<p>Parse the expiration date from the JWT like this:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="nb">echo</span> <span class="nv">$LP_JWT</span> | sed -e <span class="s1">'s/.*\.\(.*\)\..*/\1/'</span> | base64 --decode | grep -Eo <span class="s1">'"exp":(\d*)'</span>  | cut -d: -f
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">jwtDecode</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'jwt-decode'</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">jwt_decode</span><span class="p">(</span><span class="nx">token</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">decoded</span><span class="p">.</span><span class="nx">exp</span><span class="p">);</span>
+</code></pre><h3 id='jwt-expiration'>JWT expiration</h3>
+<p>JWTs expire after a short time duration such as 1 hour. The expiration timestamp of the JWT can be extracted from the token itself.</p>
+
+<p>In order to retrieve a new JWT before it expires login must be repeated. Subsequently, the newly issued AppJWT is sent with all requests.</p>
+
+<aside class="success">
+Your connector should cache the JWT for its duration of validity. It is recommended to renew the token 5 minutes before it is invalidated. 
+</aside>
+<h3 id='use-a-jwt'>Use a JWT</h3>
+<p>Having obtained a valid JWT, you must set an <code>Authentication</code> header in all subsequent Connector API HTTPS requests:</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>JWT value</td>
+</tr>
+</tbody></table>
+<h1 id='consumer-identity'>Consumer identity</h1>
+<p>The JWT authorizes your connector to perform actions on behalf of a customer, e.g., to create conversations and send messages. The identity of the customer itself is defined in a JSON Web Signature (JWS). This token has to be obtained separately, and used in all subsequent requests for a specific customer.  </p>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  <span class="s1">'https://${idpDomain}/api/account/${accountId}/consumer?v=1.0'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: ${JWT} \
+  -H '</span>Content-Type: application/json<span class="s1">' \
+  -d '</span><span class="o">{</span>
+    <span class="s2">"ext_consumer_id"</span>: <span class="s2">"</span><span class="k">${</span><span class="nv">customerId</span><span class="k">}</span><span class="s2">"</span>
+  <span class="o">}</span><span class="s1">'
+</span></code></pre>
+<blockquote>
+<p>If succcessful a 201 response is returned with the JWS:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "token": "eyJraWQiOiJhcHBqd3QtMTMtMDUtMTciLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhY2NvdW50X2lkIjoiNTMxMzg0NiIsImV4dF9jb25zdW1lcl9pZCI6InZmLXJhbmRvbV9pZDAuNjg5Mjc0NjIxNDM0MTM0MzI0IiwibHBfY29uc3VtZXJfaWQiOiJhYjMxNzNiZDAxY2IyMDAzMjM4YzM5NTI1ZjE5NDQ0MmM2YmQzMmM2YWYwZTZiYjAyZjY1ZGE2MWI5NmI1ZjIyIn0.SoHQAmoNqCxut73EEFgqYX1y5JOD4skDhGpzko8TMcFxFJnwJChvpKwGTRFIpBFfP0JPItqpKNUs7CrwtpZO4GCTZ9nRJXDMgJ6zpL_-8_aJTxDkryWLk4q1NdqJy7KMebFIRCmzGhcmRGiRcJbceqIgX4hkmcY_tSFLQjVk8_oSrw8w_sv1uarOvFn7q-1XX3bt2eTqJDlq1qT7tAwxiaLESWipjX9H3DajmcUlknTcmyLINAZ3FD5bDtKE6Q_wFM43TCK952kCbjUnJN9txblX-Z1D5LHuV3rsKKUYAYDq09A4_D5G8b3RZggF72llsDUc8JS2mFTrmpoh54hVcg"
+}
+</code></pre><h3 id='retrieve-a-jws'>Retrieve a JWS</h3>
+<p>Use the domain API to retrieve the domain of the LivePerson IDP service. The <code>accountId</code> is specified as a variable in the path.</p>
+<h3 id='request-2'>Request</h3>
+<p><strong>POST</strong> https://${idpDomain}/api/account/${accountId}/consumer?v=1.0&#39;</p>
+<h4 id='headers-2'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>JWT value</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+</tbody></table>
+<h4 id='request-body'>Request body</h4>
+<p>The request body defines the customer&#39;s id in <code>ext_consumer_id</code>:</p>
+<h3 id='response-2'>Response</h3>
+<p>If the request is successful a HTTPS 201 <code>Created</code> is returned with the JWS <code>token</code> in the body.</p>
+<h3 id='use-the-jws'>Use the JWS</h3>
+<p>Having obtained a valid JWS, you must set an <code>X-LP-ON-BEHALF</code> header in all subsequent requests to Connector API:</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-LP-ON-BEHALF</td>
+<td>JWS value</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>JWT value</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
 </tr>
 </tbody></table>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+A JWS does not expire and should be cached by your connector implementation.  
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<h1 id='conversation'>Conversation</h1><h2 id='create-a-conversation'>Create a conversation</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  <span class="s1">'https://va-at.msg.liveperson.net/api/account/5313846/messaging/consumer/conversation?v=3'</span> <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: ${JWT}'</span> <span class="se">\</span>
+  -H <span class="s1">'X-LP-ON-BEHALF: ${JWS}'</span> <span class="se">\</span>
+  -d <span class="s1">'[{
+        "kind": "req",
+        "id": "4b91dd19-9b0c-4354-8fef-4f58a45a9c57",
+        "type": "userprofile.SetUserProfile",
+        "body": {
+           "authenticatedData": {
+                "lp_sdes": [
+                    {
+                        "type": "ctmrinfo",
+                        "info": {
+                            "customerId": "138766AZE",
+                            "socialId": "1125632",
+                            "imei": "35433545688",
+                            "userName": "user000"
+                        }
+                    },
+                    {
+                        "type": "personal",
+                        "personal": {
+                            "firstname": "John",
+                            "lastname": "Doe"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "kind": "req",
+        "id": "533575ec-b092-4ea6-ba13-25a98095e79f",
+        "type": "cm.ConsumerRequestConversation",
+        "body": {
+            "channelType": "MESSAGING",
+            "brandId": "${accountId}"
+        }
+    }
+]'</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>If succcessful a 200 response is returned:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
+<pre class="highlight shell tab-shell"><code><span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"code"</span>: <span class="s2">"OK"</span>,
+        <span class="s2">"body"</span>: <span class="o">{</span>
+            <span class="s2">"msg"</span>: <span class="s2">"OK User Profile set successfully"</span>
+        <span class="o">}</span>,
+        <span class="s2">"reqId"</span>: <span class="s2">"4b91dd19-9b0c-4354-8fef-4f58a45a9c57"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"code"</span>: <span class="s2">"OK"</span>,
+        <span class="s2">"body"</span>: <span class="o">{</span>
+            <span class="s2">"conversationId"</span>: <span class="s2">"cbf6e739-dfe6-4e3c-a544-2504afbe8747"</span>
+        <span class="o">}</span>,
+        <span class="s2">"reqId"</span>: <span class="s2">"533575ec-b092-4ea6-ba13-25a98095e79f"</span>
+    <span class="o">}</span>
+<span class="o">]</span>
+</code></pre>
+<p>A new conversation is created by sending a HTTPS POST request to the Connector API <code>/conversation</code> endpoint. The URL includes the domain of the Messaging Service and the <code>accountId</code>. The query parameter <code>v=3</code> specifies the API version. In the HTTP headers both the authentication JWT and customer JWS must be included. </p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p>Every event has a <code>type</code> and an <code>id</code>. To generate the <code>id</code> in each request please use a UUID library of your choice to automatically generate an ID that adheres to the Universally Unique Identifier (UUID) v4 standard.</p>
+<h3 id='request-3'>Request</h3>
+<p><strong>POST</strong> https://${messagingDomain}/api/account/${accountId}/messaging/consumer/conversation?v=3</p>
+
+<aside>
+To find the `messagingDomain` domain, please use the Domain API with your account id and the service id `asnycMessagingEnt`.
+</aside>
+<h3 id='https-headers'>HTTPS headers</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>Key</th>
+<th>Value</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>X-LP-ON-BEHALF</td>
+<td>JWS value</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>JWT value</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h3 id='payload'>Payload</h3>
+<p>The request payload is an array containing the following payloads. The payloads is ordered in a JSON array as follows: </p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Request object</th>
+<th>Description</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userprofile.SetUserProfile</td>
+<td>Set the user profile. <code>lp-sdes</code> defines engagement attributes that can hold customer <code>type=ctmrinfo</code> or personal <code>type=personal</code> information</td>
+<td>true</td>
+</tr>
+<tr>
+<td>cm.ConsumerRequestConversation</td>
+<td>Request a conversation</td>
+<td>true</td>
+</tr>
+</tbody></table>
+
+<p>The allowed Engagement Attributes are <code>ctmrinfo</code> <a href="https://developers.liveperson.com/data-access-api-methods-web-session.html#engagement-attribute-type---customer-info"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a> and <code>personal</code> <a href="https://developers.liveperson.com/data-access-api-methods-web-session.html#engagement-attribute-type---personal-info"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>.</p>
+<h3 id='response-3'>Response</h3>
+<p>If successsul a 200 response is returned with a JSON array in the same order as the events in the request. In the second response object the <code>conversationId</code>is wrapped as part of the body. The connector will subsequently use this <code>conversationId</code> for in all messages for this customer.</p>
+
+<aside class="warning">
+The conversation id for a customer is managed by the connector. There can be cases where a conversation has been closed not by the connector but by an agent or the system. In this case, a new conversation has to be created. 
+</aside>
+<h2 id='create-a-conversation-with-skill-routing'>Create a conversation with skill routing</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  <span class="s1">'https://va-at.msg.liveperson.net/api/account/5313846/messaging/consumer/conversation?v=3'</span> <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: ${JWT}'</span> <span class="se">\</span>
+  -H <span class="s1">'X-LP-ON-BEHALF: ${JWS}'</span> <span class="se">\</span>
+  -d <span class="s1">'[{
+        "kind": "req",
+        "id": "4b91dd19-9b0c-4354-8fef-4f58a45a9c57",
+        "type": "userprofile.SetUserProfile",
+        "body": {
+           "authenticatedData": {
+                "lp_sdes": [
+                    {
+                        "type": "personal",
+                        "personal": {
+                            "firstname": "John",
+                            "lastname": "Doe"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "kind": "req",
+        "id": "533575ec-b092-4ea6-ba13-25a98095e79f",
+        "type": "cm.ConsumerRequestConversation",
+        "body": {
+            "channelType": "MESSAGING",
+            "brandId": "${accountId}"
+      "campaignInfo": {
+                "campaignId": "${campaignId}",
+                "engagementId": "${engagementId}"
+            }
+        }
+    }
+]'</span>
+</code></pre>
+<blockquote>
+<p>If succcessful a 200 response is returned:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"code"</span>: <span class="s2">"OK"</span>,
+        <span class="s2">"body"</span>: <span class="o">{</span>
+            <span class="s2">"msg"</span>: <span class="s2">"OK User Profile set successfully"</span>
+        <span class="o">}</span>,
+        <span class="s2">"reqId"</span>: <span class="s2">"4b91dd19-9b0c-4354-8fef-4f58a45a9c57"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"code"</span>: <span class="s2">"OK"</span>,
+        <span class="s2">"body"</span>: <span class="o">{</span>
+            <span class="s2">"conversationId"</span>: <span class="s2">"cbf6e739-dfe6-4e3c-a544-2504afbe8747"</span>
+        <span class="o">}</span>,
+        <span class="s2">"reqId"</span>: <span class="s2">"533575ec-b092-4ea6-ba13-25a98095e79f"</span>
+    <span class="o">}</span>
+<span class="o">]</span>
+</code></pre>
+<p>Skill routing is decided upon conversation creation. If you are planning to route a customer to a specific skill then you should use a campaign with engagement for this.  </p>
+
+<p>It is recommended to set up skill routing with an engagement and campaign. For this, it is required to add a <code>conversationContext</code> object to the request. It specifies the <code>engagementId</code> and <code>campaignId</code>. If you do not have a campaign defined yet, you should create one for the connector. </p>
+
+<p>Campaigns and engagement can be created in two different ways:</p>
+
+<ol>
+<li><p>Programatically with the Mononitoring API </p></li>
+<li><p>Manually with the &quot;Campaign&quot; tab in LiveEngage</p></li>
+</ol>
+
+<p>In LiveEngage, the <code>engagementId</code> and <code>campaignId</code>are shown as seen below: </p>
+
+<p><img src="images/campaign_engagement_ids.png" title="Mockup - Create a Connector App" alt="mockup" /></p>
+
+<aside class="warning">
+Please note: A campaign and engagement when creating a conversation is a prerequisite to reporting!
+</aside>
+<h3 id='conversation-already-exists'>Conversation already exists</h3>
+<blockquote>
+<p>If a conversation already exists you will receive a response like this:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"code"</span>: <span class="s2">"OK"</span>,
+        <span class="s2">"body"</span>: <span class="o">{</span>
+            <span class="s2">"msg"</span>: <span class="s2">"OK User Profile set successfully"</span>
+        <span class="o">}</span>,
+        <span class="s2">"reqId"</span>: <span class="s2">"4b91dd19-9b0c-4354-8fef-4f58a45a9c57"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"code"</span>: <span class="s2">"BAD_REQUEST"</span>,
+        <span class="s2">"body"</span>: <span class="o">{</span>
+            <span class="s2">"msg"</span>: <span class="s2">"Consumer request conversation failed: User 77d338e4b6bf02affbf9bf00a779cbf06b0fcd7fb1674028e8739acdfa6ae7a2 already has open conversation. Can't open another one."</span>
+        <span class="o">}</span>,
+        <span class="s2">"reqId"</span>: <span class="s2">"533575ec-b092-4ea6-ba13-25a98095e79f"</span>
+    <span class="o">}</span>
+<span class="o">]</span>
+</code></pre>
+<p>If a conversation already exists a <code>400 Bad Request</code> response is returned. It is expected that the <code>conversationId</code> is managed by the connector.</p>
+<h2 id='close-conversation'>Close conversation</h2>
+<blockquote>
+<p>A conversation is closed by sending a state update event:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  <span class="s1">'https://${messagingDomain}/api/account/${accountId}/messaging/consumer/conversation/send?v=3'</span> <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: ${JWT}'</span> <span class="se">\</span>
+  -H <span class="s1">'X-LP-ON-BEHALF: ${JWS}'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+ "kind": "req",
+ "id": "c4255004-9c50-4405-8cba-475d761fab1b",
+ "body": {
+   "conversationId": "cbf6e739-dfe6-4e3c-a544-2504afbe8747",
+   "conversationField": {
+     "field": "ConversationStateField",
+     "conversationState": "CLOSE"
+   }
+ },
+ "type": "cm.UpdateConversationField"
+}'</span>
+</code></pre>
+<blockquote>
+<p>You get the following response if successfull:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="o">{</span>
+    <span class="s2">"code"</span>: <span class="s2">"OK"</span>,
+    <span class="s2">"body"</span>: <span class="o">{</span>
+        <span class="s2">"msg"</span>: <span class="s2">"OK Conversation resolved successfully"</span>
+    <span class="o">}</span>,
+    <span class="s2">"reqId"</span>: <span class="s2">"c4255004-9c50-4405-8cba-475d761fab1b"</span>
+<span class="o">}</span>
+</code></pre>
+<p>A custom connector can close a conversation at any time. Typically, conversations are closed when the customer&#39;s request is resolved. Because many Messaging apps do not have a notion of &quot;close&quot; or &quot;resolve&quot; you may choose not to close conversations by the connector at all. However, it is still possible that an agent or the system closes a conversation state&mdash;conversation state changes by other participants are tracked by analyzing Webhook notifcations.</p>
+<h3 id='request-4'>Request</h3>
+<p><strong>POST</strong> https://${messagingDomain}/api/account/${accountId}/messaging/consumer/conversation/send?v=3&#39;</p>
+<h3 id='https-headers-2'>HTTPS headers</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-LP-ON-BEHALF</td>
+<td>JWS value</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>JWT value</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+</tbody></table>
+<h3 id='payload-2'>Payload</h3>
+<p>The request payload is an array containing the following payloads. The payloads is ordered in a JSON array as follows: </p>
+
+<table><thead>
+<tr>
+<th>Request object</th>
+<th>Description</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cm.UpdateConversationField</td>
+<td>Updates the conversation state in the <code>body</code> field. Required inputs are the <code>conversationId</code> and <code>conversationField</code> with the <code>conversationState</code> = &quot;CLOSE&quot;</td>
+<td>true</td>
+</tr>
+</tbody></table>
+<h3 id='response-4'>Response</h3>
+<p>If successsul a <code>200 OK</code> response is returned with <code>code=&quot;OK&quot;</code> in the JSON response body.</p>
+<h1 id='send-a-message'>Send a message</h1>
+<blockquote>
+<p>Send a plain text message:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  <span class="s1">'https://${messagingDomain}/api/account/${accountId}/messaging/consumer/conversation/send?v=3'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: ${JWT}'</span> <span class="se">\</span>
+  -H <span class="s1">'X-LP-ON-BEHALF: ${JWS}'</span> <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "kind": "req",
+    "type": "ms.PublishEvent",
+    "id": "1556852a-4bb3-11e9-8646-d663bd873d93",
+    "body": {
+        "conversationId": "cbf6e739-dfe6-4e3c-a544-2504afbe8747",
+        "dialogId": "cbf6e739-dfe6-4e3c-a544-2504afbe8747",
+          "event": {
+              "type": "ContentEvent",
+              "contentType": "text/plain",
+              "message": Hello world!"
+          }
+    }
+  }'</span>
+</code></pre>
+<blockquote>
+<p>A <code>200 OK</code> with the following JSON response is returned:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="o">{</span>
+    <span class="s2">"code"</span>: <span class="s2">"OK"</span>,
+    <span class="s2">"body"</span>: <span class="o">{</span>
+        <span class="s2">"sequence"</span>: 0
+    <span class="o">}</span>,
+    <span class="s2">"reqId"</span>: <span class="s2">"1556852a-4bb3-11e9-8646-d663bd873d93"</span>
+<span class="o">}</span>
+</code></pre>
+<p>The Connector API <code>/send</code> endpoint is used to send messages in an open conversation. A text message is published by sending a <code>PublishEvent</code> event object.</p>
+<h3 id='request-5'>Request</h3>
+<p><strong>POST</strong> https://${messagingDomain}/api/account/${accountId}/messaging/consumer/conversation/send?v=3</p>
+<h3 id='https-headers-3'>HTTPS headers</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-LP-ON-BEHALF</td>
+<td>JWS value</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>JWT value</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+</tbody></table>
+<h3 id='payload-3'>Payload</h3>
+<table><thead>
+<tr>
+<th>Request object</th>
+<th>Description</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ms.PublishEvent</td>
+<td>Event type for publishing messages in a conversation the contentType  text/plain indicates a text event</td>
+<td>true</td>
+</tr>
+</tbody></table>
+
+<p>The request object defines both a <code>conversationId</code> and <code>dialogId</code>. When a conversation is opened, the system automatically creates a MAIN dialog with the same id. Depending on the functional scope there may multiple dialogs<a href="https://developers.liveperson.com/messaging-window-api-tutorials-post-conversation-survey-pcs.html#multi-dialog-conversation"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>. For example, if a survey is initiated the MAIN dialog is closed and a new dialog POST_SURVEY is opened. If your connector shall support surveys, it has track conversation and dialog changes using Webhook notifications. </p>
+<h3 id='response-5'>Response</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>code</td>
+<td>&#39;OK&#39; indicates that the message is successfully sent</td>
+</tr>
+<tr>
+<td>reqId</td>
+<td>The request id in the response</td>
+</tr>
+<tr>
+<td>sequenceId</td>
+<td>ordered no. of the message within the conversation, the first message&#39;s sequenceId is 0</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>If a message exceeds the maximum size a <code>400 Bad Request</code> is returned:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="o">{</span>
+    <span class="s2">"code"</span>: <span class="s2">"BAD_REQUEST"</span>,
+    <span class="s2">"body"</span>: <span class="o">{</span>
+        <span class="s2">"msg"</span>: <span class="s2">"Bad Request"</span>
+    <span class="o">}</span>,
+    <span class="s2">"reqId"</span>: <span class="s2">"1556852a-4bb3-11e9-8646-d663bd873d93"</span>
+<span class="o">}</span>
+</code></pre>
+<aside class="warning">
+The size of the JSON request object cannot exceed 5000 characters. If a message exceeds the maximum size a `400 Bad Request` response will be returned.
+</aside>
+<h1 id='send-a-media-file'>Send a media file</h1>
+<p><a href="https://developers.liveperson.com/file-sharing-file-sharing-for-web-messaging.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a></p>
+
+<aside class="warning">
+Max. 5000 characters
+</aside>
+<h1 id='listen-to-notifications'>Listen to notifications</h1><h1 id='message-history'>Message history</h1><h1 id='use-client-features'>Use client features</h1>
+<p>In order to indicate to support auto messages, a specific ClientProperties header must be included in every HTTPS request. This mechanism is covered at the end of this chapter.</p>
+
+<script type="application/javascript">
+    // Initialize
+    var Tooltips = document.getElementsByClassName('TooltipTrigger');
+
+    // Track all tooltips trigger
+    for (var i = 0; i < Tooltips.length; i++) {
+      // Event Handler
+      Tooltips[i].addEventListener("mouseenter", function(ev) {
+        ev.preventDefault();
+        this.style.position = "relative";
+        this.innerHTML = this.innerHTML + "<div class='Tooltips'><p class='" + this.getAttribute("data-position") + "'>" + this.getAttribute("data-tooltips") + "</p></div>";
+      });
+      Tooltips[i].addEventListener("mouseleave", function(ev) {
+        ev.preventDefault();
+        this.removeAttribute("style");
+        this.innerHTML = this.innerHTML.replace(/<div[^]*?<\/div>/, '');;
+      });
+    }  
+</script>
+<h1 id='errors'>Errors</h1>
+<aside class="notice">
+This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+</aside>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The object requested is hidden for administrators only.</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
       </div>
     </div>
   </body>
