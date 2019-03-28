@@ -199,6 +199,8 @@
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
+
+    <link href="images/favicon.ico" rel="icon" type="image/ico" />
   </head>
 
   <body class="index" data-languages="[&quot;shell&quot;]">
@@ -306,19 +308,33 @@
               </ul>
           </li>
           <li>
-            <a href="#send-a-media-file" class="toc-h1 toc-link" data-title="Send a media file">Send a media file</a>
-          </li>
-          <li>
-            <a href="#listen-to-notifications" class="toc-h1 toc-link" data-title="Listen to notifications">Listen to notifications</a>
-          </li>
-          <li>
-            <a href="#message-history" class="toc-h1 toc-link" data-title="Message history">Message history</a>
-          </li>
-          <li>
-            <a href="#use-client-features" class="toc-h1 toc-link" data-title="Use client features">Use client features</a>
-          </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#webhooks" class="toc-h1 toc-link" data-title="Webhooks">Webhooks</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#requirements" class="toc-h2 toc-link" data-title="Requirements">Requirements</a>
+                  </li>
+                  <li>
+                    <a href="#authentication-2" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#notification-types" class="toc-h2 toc-link" data-title="Notification types">Notification types</a>
+                  </li>
+                  <li>
+                    <a href="#conversation-created" class="toc-h2 toc-link" data-title="Conversation created">Conversation created</a>
+                  </li>
+                  <li>
+                    <a href="#agent-joined" class="toc-h2 toc-link" data-title="Agent joined">Agent joined</a>
+                  </li>
+                  <li>
+                    <a href="#message-by-agent" class="toc-h2 toc-link" data-title="Message by agent">Message by agent</a>
+                  </li>
+                  <li>
+                    <a href="#skill-transfer" class="toc-h2 toc-link" data-title="Skill transfer">Skill transfer</a>
+                  </li>
+                  <li>
+                    <a href="#conversation-closed-by-agent" class="toc-h2 toc-link" data-title="Conversation closed by agent">Conversation closed by agent</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -351,93 +367,91 @@ If you are not sure about developing a connector, please contact your account te
 <p>Conversations can be created or closed, and each customer can only have one open conversation at a time. Agents and bots, on the other hand, can respond to multiple conversations. A conversation is closed when it ends, e.g., the agent has resolved the case and closes the conversation. There are also cases when a conversation is closed automatically, for example, when a customer is no longer responding (&#39;auto close&#39;). Conversations can be split into dialogs of different types. The &#39;main&#39; dialog is the one that holds the actual messaging exchange, however, depending on the application there could be more dialog types such as CoBrowse or Survey.</p>
 
 <p>Customers, agents, agent managers, or bots are all identifiable participants in a conversation. Often customers are not only introduced using an ID but carry additional information, such as name and contact data. This information is sent by using 
- <span class="TooltipTrigger" data-tooltips="Engagement Attributes are specific customer information such as product viewed, purchase information, errors the visitor encountered, and search results. They can be collected before or during a conversation." data-position="OnBottom">Engagement Attributes</span>.</p>
-
-<p>HTML native tooltips: <abbr title="In order to collect specific customer information such as product viewed, purchase information, errors the visitor encountered, and search results, you can send this information by using Engagement Attributes.">Engagement Attributes</abbr>. </p>
+ <span class="TooltipTrigger" data-tooltips="Engagement Attributes are specific customer information such as product viewed, purchase information, errors the visitor encountered, and search results. They can be collected before or during a conversation. Engagement Attributes are also referred to as SDEs (Standard Data Entity)" data-position="OnBottom">Engagement Attributes</span>.</p>
 <h1 id='prerequisites'>Prerequisites</h1><h2 id='install-an-application'>Install an application</h2>
 <blockquote>
 <p>Manifest example (JSON):</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-  "client_name": "App name",
-  "description": "App description",
-  "grant_types": [
-    "client_credentials"
-  ],
-  "scope": "msg.consumer",
-  "capabilities": {
-    "webhooks": {
-      "ms.MessagingEventNotification.ContentEvent": {
-        "endpoint": "https://your/webhooks/endpoint",
-        "max_retries": 5
-      },
-      "ms.MessagingEventNotification.RichContentEvent": {
-        "endpoint": "https://your/webhooks/endpoint",
-        "max_retries": 5
-      },
-      "ms.MessagingEventNotification.AcceptStatusEvent": {
-        "endpoint": "https://your/webhooks/endpoint",
-        "max_retries": 5
-      },
-      "ms.MessagingEventNotification.ChatStateEvent": {
-        "endpoint": "https://your/webhooks/endpoint",
-        "max_retries": 5
-      },
-      "cqm.ExConversationChangeNotification": {
-        "endpoint": "https://your/webhooks/endpoint",
-        "max_retries": 5
-      }
-    },
-    "engagement": {
-      "design_engagement": false,
-      "design_window": false,
-      "entry_point": [
-        "section"
-      ],
-      "visitor_behavior": [
-        "visited_location",
-        "time_on_location",
-        "flow",
-        "engaged_in_session",
-        "about_to_abandon",
-        "cart_value",
-        "cart_items",
-        "visitor_error",
-        "viewed_products",
-        "service_activity"
-      ],
-      "target_audience": [
-        "external_referral",
-        "search_keywords",
-        "ip",
-        "platform",
-        "geo_location",
-        "returning_visitors",
-        "marketing_source",
-        "customer_type",
-        "age",
-        "balance",
-        "customer_id",
-        "gender",
-        "store_zip_code",
-        "store_number",
-        "company_size",
-        "registration_date"
-      ],
-      "goal": [
-        "url",
-        "purchase_total",
-        "num_of_pages",
-        "lead",
-        "service_activity"
-      ],
-      "consumer_identity": [
-        "auth"
-      ],
-      "language_selection": false
-    }
-  }
-}
+<pre class="highlight shell tab-shell"><code><span class="o">{</span>
+  <span class="s2">"client_name"</span>: <span class="s2">"App name"</span>,
+  <span class="s2">"description"</span>: <span class="s2">"App description"</span>,
+  <span class="s2">"grant_types"</span>: <span class="o">[</span>
+    <span class="s2">"client_credentials"</span>
+  <span class="o">]</span>,
+  <span class="s2">"scope"</span>: <span class="s2">"msg.consumer"</span>,
+  <span class="s2">"capabilities"</span>: <span class="o">{</span>
+    <span class="s2">"webhooks"</span>: <span class="o">{</span>
+      <span class="s2">"ms.MessagingEventNotification.ContentEvent"</span>: <span class="o">{</span>
+        <span class="s2">"endpoint"</span>: <span class="s2">"https://your/webhooks/endpoint"</span>,
+        <span class="s2">"max_retries"</span>: 5
+      <span class="o">}</span>,
+      <span class="s2">"ms.MessagingEventNotification.RichContentEvent"</span>: <span class="o">{</span>
+        <span class="s2">"endpoint"</span>: <span class="s2">"https://your/webhooks/endpoint"</span>,
+        <span class="s2">"max_retries"</span>: 5
+      <span class="o">}</span>,
+      <span class="s2">"ms.MessagingEventNotification.AcceptStatusEvent"</span>: <span class="o">{</span>
+        <span class="s2">"endpoint"</span>: <span class="s2">"https://your/webhooks/endpoint"</span>,
+        <span class="s2">"max_retries"</span>: 5
+      <span class="o">}</span>,
+      <span class="s2">"ms.MessagingEventNotification.ChatStateEvent"</span>: <span class="o">{</span>
+        <span class="s2">"endpoint"</span>: <span class="s2">"https://your/webhooks/endpoint"</span>,
+        <span class="s2">"max_retries"</span>: 5
+      <span class="o">}</span>,
+      <span class="s2">"cqm.ExConversationChangeNotification"</span>: <span class="o">{</span>
+        <span class="s2">"endpoint"</span>: <span class="s2">"https://your/webhooks/endpoint"</span>,
+        <span class="s2">"max_retries"</span>: 5
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="s2">"engagement"</span>: <span class="o">{</span>
+      <span class="s2">"design_engagement"</span>: <span class="nb">false</span>,
+      <span class="s2">"design_window"</span>: <span class="nb">false</span>,
+      <span class="s2">"entry_point"</span>: <span class="o">[</span>
+        <span class="s2">"section"</span>
+      <span class="o">]</span>,
+      <span class="s2">"visitor_behavior"</span>: <span class="o">[</span>
+        <span class="s2">"visited_location"</span>,
+        <span class="s2">"time_on_location"</span>,
+        <span class="s2">"flow"</span>,
+        <span class="s2">"engaged_in_session"</span>,
+        <span class="s2">"about_to_abandon"</span>,
+        <span class="s2">"cart_value"</span>,
+        <span class="s2">"cart_items"</span>,
+        <span class="s2">"visitor_error"</span>,
+        <span class="s2">"viewed_products"</span>,
+        <span class="s2">"service_activity"</span>
+      <span class="o">]</span>,
+      <span class="s2">"target_audience"</span>: <span class="o">[</span>
+        <span class="s2">"external_referral"</span>,
+        <span class="s2">"search_keywords"</span>,
+        <span class="s2">"ip"</span>,
+        <span class="s2">"platform"</span>,
+        <span class="s2">"geo_location"</span>,
+        <span class="s2">"returning_visitors"</span>,
+        <span class="s2">"marketing_source"</span>,
+        <span class="s2">"customer_type"</span>,
+        <span class="s2">"age"</span>,
+        <span class="s2">"balance"</span>,
+        <span class="s2">"customer_id"</span>,
+        <span class="s2">"gender"</span>,
+        <span class="s2">"store_zip_code"</span>,
+        <span class="s2">"store_number"</span>,
+        <span class="s2">"company_size"</span>,
+        <span class="s2">"registration_date"</span>
+      <span class="o">]</span>,
+      <span class="s2">"goal"</span>: <span class="o">[</span>
+        <span class="s2">"url"</span>,
+        <span class="s2">"purchase_total"</span>,
+        <span class="s2">"num_of_pages"</span>,
+        <span class="s2">"lead"</span>,
+        <span class="s2">"service_activity"</span>
+      <span class="o">]</span>,
+      <span class="s2">"consumer_identity"</span>: <span class="o">[</span>
+        <span class="s2">"auth"</span>
+      <span class="o">]</span>,
+      <span class="s2">"language_selection"</span>: <span class="nb">false</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
 <p>The Connector API uses JSON Web Tokens (JWT) allow access to the API. The JWTs are requested using obtain <code>clientId</code> and <code>clientSecret</code>. In order to obtain these intitially you have to register a new LiveEngage application.</p>
 
@@ -1149,22 +1163,579 @@ Please note: A campaign and engagement when creating a conversation is a prerequ
 <aside class="warning">
 The size of the JSON request object cannot exceed 5000 characters. If a message exceeds the maximum size a `400 Bad Request` response will be returned.
 </aside>
-<h1 id='send-a-media-file'>Send a media file</h1>
-<p><a href="https://developers.liveperson.com/file-sharing-file-sharing-for-web-messaging.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a></p>
+<h1 id='webhooks'>Webhooks</h1>
+<p>Connector API <code>/conversation</code> and <code>/send</code> endpoints provide you with the means to send customer messages to LiveEngage Messaging. If you want to receive updates on a conversation, e.g. messages sent by an agent, you have to expose a public HTTPS POST Webhook endpoint to receive those notifications. </p>
+<h2 id='requirements'>Requirements</h2>
+<p>The Webhook notifications are sent as POST requests over SSL only (HTTPS). The application endpoint is required to be set up with a <strong>valid</strong> web-server TLS/SSL certificate.</p>
+
+<p>The application endpoint is expected to <strong>immediately</strong> respond to each a notification request. A response delay can lead to a timeout of that notification request.</p>
+
+<p>The application endpoint is expected to respond with either a <code>200 OK</code> or <code>201 Created</code> HTTPS response code to each a notification request. Any other response code will be considered as a notification request failure.</p>
 
 <aside class="warning">
-Max. 5000 characters
+The Webhook notifications are sent globally for all Messaging channels of an account. A registered endpoint will also receive notifications on conversations that were started outside of your connector.
 </aside>
-<h1 id='listen-to-notifications'>Listen to notifications</h1><h1 id='message-history'>Message history</h1><h1 id='use-client-features'>Use client features</h1>
-<p>In order to indicate to support auto messages, a specific ClientProperties header must be included in every HTTPS request. This mechanism is covered at the end of this chapter.</p>
+<h2 id='authentication-2'>Authentication</h2>
+<p>Authentication is verified by your Webhook endpoint based on the <code>clientId</code> and <code>clientSecret</code> of your Webhook notification. For authentication it is required to analyze all HTTPS POST request headers and check the SHA1 signature of the payload using <code>clientSecret</code> as the key. </p>
+<h3 id='request-headers'>Request headers</h3>
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>x-liveperson-account-id</td>
+<td>The unique LivePerson account identifier. Can be used to differentiate registration of different accounts, when the same url is used for multiple accounts.</td>
+</tr>
+<tr>
+<td>x-liveperson-client-id</td>
+<td>The unique client application identifier. The client_id that the consumer receives from their account manager after the App Installation process.</td>
+</tr>
+<tr>
+<td>x-liveperson-signature</td>
+<td>A token generated by signing the payload using the client-secret. A SHA1 signature of the payload and the client_secret (given by the account manager in the Application Installation process) preceded with “sha1=”.</td>
+</tr>
+</tbody></table>
+<h2 id='notification-types'>Notification types</h2>
+<p>The notification types that your connector subscribes to as defined in the application manifest <a href="#install-an-application"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>.</p>
 
+<table><thead>
+<tr>
+<th>Notification type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cqm.ExConversationChangeNotification</td>
+<td>Notification on conversation state changes, e.g. a conversation is created, a participant (customer or agent) has changed, a conversation is closed, or the CSAT score is updated.</td>
+</tr>
+<tr>
+<td>ms.MessagingEventNotification.ContentEvent</td>
+<td>Notification on text-based messages in a conversation. This includes messages by all participants, agents <strong>and</strong> customers.</td>
+</tr>
+<tr>
+<td>ms.MessagingEventNotification.RichContentEvent</td>
+<td>Notification on messages with Rich Content (a.k.a Structured Content) in a conversation.</td>
+</tr>
+<tr>
+<td>ms.MessagingEventNotification.AcceptStatusEvent</td>
+<td>Notification on status events, e.g. a participant accepted or read one to many messages.</td>
+</tr>
+<tr>
+<td>ms.MessagingEventNotification.ChatStateEvent</td>
+<td>Notification on the activity state of a participant. For example, the notification indicates whether a participant is composing a message, becomes active or inactive.</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+The subscription to notification types is defined in the application manifest. You can modify the subscriptions and endpoints by using the Demo Connector <a href="https://connector-api.dev.liveperson.net/" target="_new"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>. Please make sure to only modify the application manifest on developer accounts.
+</aside>
+<h2 id='conversation-created'>Conversation created</h2>
+<blockquote>
+<p>A new conversation is created:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="o">{</span>
+   <span class="s2">"kind"</span>:<span class="s2">"notification"</span>,
+   <span class="s2">"body"</span>:<span class="o">{</span>
+      <span class="s2">"subscriptionId"</span>:<span class="s2">"ea7ecc5a-58c4-4a16-9510-4868bef08d79"</span>,
+      <span class="s2">"changes"</span>:[
+         <span class="o">{</span>
+            <span class="s2">"type"</span>:<span class="s2">"UPSERT"</span>,
+            <span class="s2">"result"</span>:<span class="o">{</span>
+               <span class="s2">"convId"</span>:<span class="s2">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span>,
+               <span class="s2">"effectiveTTR"</span>:1553590349893,
+               <span class="s2">"conversationDetails"</span>:<span class="o">{</span>
+                  <span class="s2">"skillId"</span>:<span class="s2">"558327413"</span>,
+                  <span class="s2">"participants"</span>:[
+                     <span class="o">{</span>
+                        <span class="s2">"id"</span>:<span class="s2">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span>,
+                        <span class="s2">"role"</span>:<span class="s2">"CONSUMER"</span>
+                     <span class="o">}</span>
+                  <span class="o">]</span>,
+                  <span class="s2">"dialogs"</span>:[
+                     <span class="o">{</span>
+                        <span class="s2">"dialogId"</span>:<span class="s2">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span>,
+                        <span class="s2">"participantsDetails"</span>:[
+                           <span class="o">{</span>
+                              <span class="s2">"id"</span>:<span class="s2">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span>,
+                              <span class="s2">"role"</span>:<span class="s2">"CONSUMER"</span>,
+                              <span class="s2">"state"</span>:<span class="s2">"ACTIVE"</span>
+                           <span class="o">}</span>
+                        <span class="o">]</span>,
+                        <span class="s2">"dialogType"</span>:<span class="s2">"MAIN"</span>,
+                        <span class="s2">"channelType"</span>:<span class="s2">"MESSAGING"</span>,
+                        <span class="s2">"state"</span>:<span class="s2">"OPEN"</span>,
+                        <span class="s2">"creationTs"</span>:1553589749650,
+                        <span class="s2">"metaDataLastUpdateTs"</span>:1553589749650
+                     <span class="o">}</span>
+                  <span class="o">]</span>,
+                  <span class="s2">"brandId"</span>:<span class="s2">"</span><span class="k">${</span><span class="nv">accountId</span><span class="k">}</span><span class="s2">"</span>,
+                  <span class="s2">"state"</span>:<span class="s2">"OPEN"</span>,
+                  <span class="s2">"stage"</span>:<span class="s2">"OPEN"</span>,
+                  <span class="s2">"startTs"</span>:1553589749650,
+                  <span class="s2">"metaDataLastUpdateTs"</span>:1553589749650,
+                  <span class="s2">"ttr"</span>:<span class="o">{</span>
+                     <span class="s2">"ttrType"</span>:<span class="s2">"PRIORITIZED"</span>,
+                     <span class="s2">"value"</span>:600
+                  <span class="o">}</span>,
+                  <span class="s2">"conversationHandlerDetails"</span>:<span class="o">{</span>
+                     <span class="s2">"accountId"</span>:<span class="s2">"</span><span class="k">${</span><span class="nv">accountId</span><span class="k">}</span><span class="s2">"</span>,
+                     <span class="s2">"skillId"</span>:<span class="s2">"558327413"</span>
+                  <span class="o">}</span>
+               <span class="o">}</span>
+            <span class="o">}</span>
+         <span class="o">}</span>
+      <span class="o">]</span>
+   <span class="o">}</span>,
+   <span class="s2">"type"</span>:<span class="s2">"cqm.ExConversationChangeNotification"</span>
+<span class="o">}</span>
+</code></pre>
+<p>If the application subscribes to <code>ExConversationChangeNotification</code> events, the webhook endpoint receives the following payload after a conversation was successfully created.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>kind</td>
+<td>notification</td>
+<td>Defines payload as &#39;notification&#39;</td>
+</tr>
+<tr>
+<td>type</td>
+<td>cqm.ExConversationChangeNotification</td>
+<td>Describes the type of notification</td>
+</tr>
+<tr>
+<td>body</td>
+<td>changes</td>
+<td>Changes as an array of state updates</td>
+</tr>
+<tr>
+<td>convId</td>
+<td><em>uuid</em></td>
+<td>The unique identifier of the conversation. The value equals the dialogId value with dialogType MAIN defined within the same object</td>
+</tr>
+<tr>
+<td>stage</td>
+<td>OPEN</td>
+<td>Defines the inital state of the conversation as <em>OPEN</em></td>
+</tr>
+</tbody></table>
+<h2 id='agent-joined'>Agent joined</h2>
+<blockquote>
+<p>Agent is added as a new participant to the conversation:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="o">{</span>
+   <span class="s2">"kind"</span>:<span class="s2">"notification"</span>,
+   <span class="s2">"body"</span>:<span class="o">{</span>
+      <span class="s2">"subscriptionId"</span>:<span class="s2">"ea7ecc5a-58c4-4a16-9510-4868bef08d79"</span>,
+      <span class="s2">"changes"</span>:[
+         <span class="o">{</span>
+            <span class="s2">"type"</span>:<span class="s2">"UPSERT"</span>,
+            <span class="s2">"result"</span>:<span class="o">{</span>
+               <span class="s2">"convId"</span>:<span class="s2">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span>,
+               <span class="s2">"effectiveTTR"</span>:1553590349893,
+               <span class="s2">"conversationDetails"</span>:<span class="o">{</span>
+                  <span class="s2">"skillId"</span>:<span class="s2">"558327413"</span>,
+                  <span class="s2">"participants"</span>:[
+                     <span class="o">{</span>
+                        <span class="s2">"id"</span>:<span class="s2">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span>,
+                        <span class="s2">"role"</span>:<span class="s2">"CONSUMER"</span>
+                     <span class="o">}</span>,
+                     <span class="o">{</span>
+                        <span class="s2">"id"</span>:<span class="s2">"e9b2867c-f984-5727-b034-fc9c6800bd9c"</span>,
+                        <span class="s2">"role"</span>:<span class="s2">"ASSIGNED_AGENT"</span>
+                     <span class="o">}</span>
+                  <span class="o">]</span>,
+                  <span class="s2">"dialogs"</span>:[
+                     <span class="o">{</span>
+                        <span class="s2">"dialogId"</span>:<span class="s2">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span>,
+                        <span class="s2">"participantsDetails"</span>:[
+                           <span class="o">{</span>
+                              <span class="s2">"id"</span>:<span class="s2">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span>,
+                              <span class="s2">"role"</span>:<span class="s2">"CONSUMER"</span>,
+                              <span class="s2">"state"</span>:<span class="s2">"ACTIVE"</span>
+                           <span class="o">}</span>,
+                           <span class="o">{</span>
+                              <span class="s2">"id"</span>:<span class="s2">"e9b2867c-f984-5727-b034-fc9c6800bd9c"</span>,
+                              <span class="s2">"role"</span>:<span class="s2">"ASSIGNED_AGENT"</span>,
+                              <span class="s2">"state"</span>:<span class="s2">"ACTIVE"</span>
+                           <span class="o">}</span>
+                        <span class="o">]</span>,
+                        <span class="s2">"dialogType"</span>:<span class="s2">"MAIN"</span>,
+                        <span class="s2">"channelType"</span>:<span class="s2">"MESSAGING"</span>,
+                        <span class="s2">"state"</span>:<span class="s2">"OPEN"</span>,
+                        <span class="s2">"creationTs"</span>:1553589749650,
+                        <span class="s2">"metaDataLastUpdateTs"</span>:1553589749650
+                     <span class="o">}</span>
+                  <span class="o">]</span>,
+                  <span class="s2">"brandId"</span>:<span class="s2">"</span><span class="k">${</span><span class="nv">accountId</span><span class="k">}</span><span class="s2">"</span>,
+                  <span class="s2">"state"</span>:<span class="s2">"OPEN"</span>,
+                  <span class="s2">"stage"</span>:<span class="s2">"OPEN"</span>,
+                  <span class="s2">"startTs"</span>:1553589749650,
+                  <span class="s2">"metaDataLastUpdateTs"</span>:1553590954025,
+                  <span class="s2">"ttr"</span>:<span class="o">{</span>
+                     <span class="s2">"ttrType"</span>:<span class="s2">"PRIORITIZED"</span>,
+                     <span class="s2">"value"</span>:600
+                  <span class="o">}</span>,
+                  <span class="s2">"conversationHandlerDetails"</span>:<span class="o">{</span>
+                     <span class="s2">"accountId"</span>:<span class="s2">"</span><span class="k">${</span><span class="nv">accountId</span><span class="k">}</span><span class="s2">"</span>,
+                     <span class="s2">"skillId"</span>:<span class="s2">"558327413"</span>
+                  <span class="o">}</span>
+               <span class="o">}</span>
+            <span class="o">}</span>
+         <span class="o">}</span>
+      <span class="o">]</span>
+   <span class="o">}</span>,
+   <span class="s2">"type"</span>:<span class="s2">"cqm.ExConversationChangeNotification"</span>
+<span class="o">}</span>
+</code></pre>
+<p>When an agent joins a conversation, this triggers an <code>cqm.ExConversationChangeNotification</code> update. </p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>kind</td>
+<td>notification</td>
+<td>Defines payload as &#39;notification&#39;</td>
+</tr>
+<tr>
+<td>type</td>
+<td>cqm.ExConversationChangeNotification</td>
+<td>Describes the type of notification</td>
+</tr>
+<tr>
+<td>body</td>
+<td>changes</td>
+<td>Changes as an array of state updates</td>
+</tr>
+<tr>
+<td>stage</td>
+<td>OPEN</td>
+<td>Defines the inital state of the conversation as <em>OPEN</em></td>
+</tr>
+<tr>
+<td>participants</td>
+<td><em>ARRAY</em></td>
+<td>Adds a participant with the role ASSIGNED_AGENT, AGENT_MANAGER, or ASSIGNED_MANAGER. Other possible roles are CONSUMER, READER, and CONTROLLER.</td>
+</tr>
+</tbody></table>
+<h2 id='message-by-agent'>Message by agent</h2>
+<blockquote>
+<p>Agent sends text message</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="o">{</span>
+   <span class="s2">"kind"</span>:<span class="s2">"notification"</span>,
+   <span class="s2">"body"</span>:<span class="o">{</span>
+      <span class="s2">"changes"</span>:[
+         <span class="o">{</span>
+            <span class="s2">"sequence"</span>:5,
+            <span class="s2">"originatorId"</span>:<span class="s2">"e9b2867c-f984-5727-b034-fc9c6800bd9c"</span>,
+            <span class="s2">"originatorMetadata"</span>:<span class="o">{</span>
+               <span class="s2">"id"</span>:<span class="s2">"e9b2867c-f984-5727-b034-fc9c6800bd9c"</span>,
+               <span class="s2">"role"</span>:<span class="s2">"ASSIGNED_AGENT"</span>
+            <span class="o">}</span>,
+            <span class="s2">"serverTimestamp"</span>:1553593406049,
+            <span class="s2">"event"</span>:<span class="o">{</span>
+               <span class="s2">"type"</span>:<span class="s2">"ContentEvent"</span>,
+               <span class="s2">"message"</span>:<span class="s2">"This is a reply!"</span>,
+               <span class="s2">"contentType"</span>:<span class="s2">"text/plain"</span>
+            <span class="o">}</span>,
+            <span class="s2">"conversationId"</span>:<span class="s2">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span>,
+            <span class="s2">"dialogId"</span>:<span class="s2">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span>
+         <span class="o">}</span>
+      <span class="o">]</span>
+   <span class="o">}</span>,
+   <span class="s2">"type"</span>:<span class="s2">"ms.MessagingEventNotification"</span>
+<span class="o">}</span>
+</code></pre>
+<p>When an agent sends a message to a conversation, a <code>ms.MessagingEventNotification</code> is triggered.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>kind</td>
+<td>notification</td>
+<td>Defines payload as &#39;notification&#39;</td>
+</tr>
+<tr>
+<td>type</td>
+<td>ms.MessagingEventNotification</td>
+<td>Describes the type of notification</td>
+</tr>
+<tr>
+<td>body</td>
+<td>changes</td>
+<td>Changes as an array of state updates</td>
+</tr>
+<tr>
+<td>sequence</td>
+<td><em>NUM VALUE</em></td>
+<td>The sequence number of this message in this conversation</td>
+</tr>
+<tr>
+<td>originatorId</td>
+<td><em>UUID</em></td>
+<td>The originator of this message update</td>
+</tr>
+<tr>
+<td>event.type</td>
+<td>ContentEvent</td>
+<td>The type of the event</td>
+</tr>
+<tr>
+<td>event.contentType</td>
+<td>text/plain</td>
+<td>Content type of the event</td>
+</tr>
+<tr>
+<td>event.message</td>
+<td><em>STRING VALUE</em></td>
+<td>The actual message content</td>
+</tr>
+<tr>
+<td>conversationId</td>
+<td><em>UUID</em></td>
+<td>The unique identifier of the conversation</td>
+</tr>
+<tr>
+<td>dialogId</td>
+<td><em>UUID</em></td>
+<td>The unique identifier of the dialog in which the message was sent. Implicitly, dialogId and conversationId are the same for the <em>MAIN</em> dialog.</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+A customer can be the originator of a message, and should hence be filtered from being displayed. For this it is required to know the participantId of the customer.
+</aside>
+<h2 id='skill-transfer'>Skill transfer</h2>
+<blockquote>
+<p>Conversation is transferred to another skill:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="o">{</span>
+   <span class="s2">"kind"</span>:<span class="s2">"notification"</span>,
+   <span class="s2">"body"</span>:<span class="o">{</span>
+      <span class="s2">"subscriptionId"</span>:<span class="s2">"ea7ecc5a-58c4-4a16-9510-4868bef08d79"</span>,
+      <span class="s2">"changes"</span>:[
+         <span class="o">{</span>
+            <span class="s2">"type"</span>:<span class="s2">"UPSERT"</span>,
+            <span class="s2">"result"</span>:<span class="o">{</span>
+               <span class="s2">"convId"</span>:<span class="s2">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span>,
+               <span class="s2">"effectiveTTR"</span>:1553598420199,
+               <span class="s2">"conversationDetails"</span>:<span class="o">{</span>
+                  <span class="s2">"skillId"</span>:<span class="s2">"99999999"</span>,
+                  <span class="s2">"participants"</span>:[
+                     <span class="o">{</span>
+                        <span class="s2">"id"</span>:<span class="s2">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span>,
+                        <span class="s2">"role"</span>:<span class="s2">"CONSUMER"</span>
+                     <span class="o">}</span>
+                  <span class="o">]</span>,
+                  <span class="s2">"dialogs"</span>:[
+                     <span class="o">{</span>
+                        <span class="s2">"dialogId"</span>:<span class="s2">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span>,
+                        <span class="s2">"participantsDetails"</span>:[
+                           <span class="o">{</span>
+                              <span class="s2">"id"</span>:<span class="s2">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span>,
+                              <span class="s2">"role"</span>:<span class="s2">"CONSUMER"</span>,
+                              <span class="s2">"state"</span>:<span class="s2">"ACTIVE"</span>
+                           <span class="o">}</span>
+                        <span class="o">]</span>,
+                        <span class="s2">"dialogType"</span>:<span class="s2">"MAIN"</span>,
+                        <span class="s2">"channelType"</span>:<span class="s2">"MESSAGING"</span>,
+                        <span class="s2">"state"</span>:<span class="s2">"OPEN"</span>,
+                        <span class="s2">"creationTs"</span>:1553589749650,
+                        <span class="s2">"metaDataLastUpdateTs"</span>:1553589749650
+                     <span class="o">}</span>
+                  <span class="o">]</span>,
+                  <span class="s2">"brandId"</span>:<span class="s2">"</span><span class="k">${</span><span class="nv">accountId</span><span class="k">}</span><span class="s2">"</span>,
+                  <span class="s2">"state"</span>:<span class="s2">"OPEN"</span>,
+                  <span class="s2">"stage"</span>:<span class="s2">"OPEN"</span>,
+                  <span class="s2">"startTs"</span>:1553589749650,
+                  <span class="s2">"metaDataLastUpdateTs"</span>:1553597820083,
+                  <span class="s2">"ttr"</span>:<span class="o">{</span>
+                     <span class="s2">"ttrType"</span>:<span class="s2">"PRIORITIZED"</span>,
+                     <span class="s2">"value"</span>:600
+                  <span class="o">}</span>,
+                  <span class="s2">"conversationHandlerDetails"</span>:<span class="o">{</span>
+                     <span class="s2">"accountId"</span>:<span class="s2">"</span><span class="k">${</span><span class="nv">accountId</span><span class="k">}</span><span class="s2">"</span>,
+                     <span class="s2">"skillId"</span>:<span class="s2">"99999999"</span>
+                  <span class="o">}</span>
+               <span class="o">}</span>
+            <span class="o">}</span>
+         <span class="o">}</span>
+      <span class="o">]</span>
+   <span class="o">}</span>,
+   <span class="s2">"type"</span>:<span class="s2">"cqm.ExConversationChangeNotification"</span>
+<span class="o">}</span>
+</code></pre>
+<p>A skill transfer consists of two state changes in the notification: the agent is removed as a participant and the skill id is updated.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>kind</td>
+<td>notification</td>
+<td>Defines payload as &#39;notification&#39;</td>
+</tr>
+<tr>
+<td>type</td>
+<td>cqm.ExConversationChangeNotification</td>
+<td>Describes the type of notification</td>
+</tr>
+<tr>
+<td>body</td>
+<td>changes</td>
+<td>Changes as an array of state updates</td>
+</tr>
+<tr>
+<td>conversationId</td>
+<td><em>UUID</em></td>
+<td>The unique identifier of the conversation</td>
+</tr>
+<tr>
+<td>skillId</td>
+<td><em>NUM VALUE</em></td>
+<td>The updated skill id</td>
+</tr>
+<tr>
+<td>participants</td>
+<td><em>ARRAY</em></td>
+<td>The updated list of participants. In this case, the participant list only includes the consumer because the agent is removed as a participant as part of the transfer</td>
+</tr>
+</tbody></table>
+<h2 id='conversation-closed-by-agent'>Conversation closed by agent</h2><pre class="highlight shell tab-shell"><code><span class="o">{</span>
+   <span class="s2">"kind"</span>:<span class="s2">"notification"</span>,
+   <span class="s2">"body"</span>:<span class="o">{</span>
+      <span class="s2">"subscriptionId"</span>:<span class="s2">"0ce06a28-455d-4a31-81f1-e3a9de585e43"</span>,
+      <span class="s2">"changes"</span>:[
+         <span class="o">{</span>
+            <span class="s2">"type"</span>:<span class="s2">"UPSERT"</span>,
+            <span class="s2">"result"</span>:<span class="o">{</span>
+               <span class="s2">"convId"</span>:<span class="s2">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span>,
+               <span class="s2">"effectiveTTR"</span>:-1,
+               <span class="s2">"conversationDetails"</span>:<span class="o">{</span>
+                  <span class="s2">"skillId"</span>:<span class="s2">"558327413"</span>,
+                  <span class="s2">"participants"</span>:[
+                     <span class="o">{</span>
+                        <span class="s2">"id"</span>:<span class="s2">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span>,
+                        <span class="s2">"role"</span>:<span class="s2">"CONSUMER"</span>
+                     <span class="o">}</span>,
+                     <span class="o">{</span>
+                        <span class="s2">"id"</span>:<span class="s2">"e9b2867c-f984-5727-b034-fc9c6800bd9c"</span>,
+                        <span class="s2">"role"</span>:<span class="s2">"ASSIGNED_AGENT"</span>
+                     <span class="o">}</span>
+                  <span class="o">]</span>,
+                  <span class="s2">"dialogs"</span>:[
+                     <span class="o">{</span>
+                        <span class="s2">"dialogId"</span>:<span class="s2">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span>,
+                        <span class="s2">"participantsDetails"</span>:[
+                           <span class="o">{</span>
+                              <span class="s2">"id"</span>:<span class="s2">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span>,
+                              <span class="s2">"role"</span>:<span class="s2">"CONSUMER"</span>,
+                              <span class="s2">"state"</span>:<span class="s2">"ACTIVE"</span>
+                           <span class="o">}</span>,
+                           <span class="o">{</span>
+                              <span class="s2">"id"</span>:<span class="s2">"e9b2867c-f984-5727-b034-fc9c6800bd9c"</span>,
+                              <span class="s2">"role"</span>:<span class="s2">"ASSIGNED_AGENT"</span>,
+                              <span class="s2">"state"</span>:<span class="s2">"ACTIVE"</span>
+                           <span class="o">}</span>
+                        <span class="o">]</span>,
+                        <span class="s2">"dialogType"</span>:<span class="s2">"MAIN"</span>,
+                        <span class="s2">"channelType"</span>:<span class="s2">"MESSAGING"</span>,
+                        <span class="s2">"state"</span>:<span class="s2">"CLOSE"</span>,
+                        <span class="s2">"creationTs"</span>:1553589749650,
+                        <span class="s2">"endTs"</span>:1553599771074,
+                        <span class="s2">"metaDataLastUpdateTs"</span>:1553599771074,
+                        <span class="s2">"closedBy"</span>:<span class="s2">"AGENT"</span>
+                     <span class="o">}</span>
+                  <span class="o">]</span>,
+                  <span class="s2">"brandId"</span>:<span class="s2">"5313846"</span>,
+                  <span class="s2">"state"</span>:<span class="s2">"CLOSE"</span>,
+                  <span class="s2">"stage"</span>:<span class="s2">"CLOSE"</span>,
+                  <span class="s2">"closeReason"</span>:<span class="s2">"AGENT"</span>,
+                  <span class="s2">"startTs"</span>:1553589749650,
+                  <span class="s2">"metaDataLastUpdateTs"</span>:1553599771074,
+                  <span class="s2">"ttr"</span>:<span class="o">{</span>
+                     <span class="s2">"ttrType"</span>:<span class="s2">"PRIORITIZED"</span>,
+                     <span class="s2">"value"</span>:600
+                  <span class="o">}</span>,
+                  <span class="s2">"conversationHandlerDetails"</span>:<span class="o">{</span>
+                     <span class="s2">"accountId"</span>:<span class="s2">"5313846"</span>,
+                     <span class="s2">"skillId"</span>:<span class="s2">"558327413"</span>
+                  <span class="o">}</span>
+               <span class="o">}</span>
+            <span class="o">}</span>
+         <span class="o">}</span>
+      <span class="o">]</span>
+   <span class="o">}</span>,
+   <span class="s2">"type"</span>:<span class="s2">"cqm.ExConversationChangeNotification"</span>
+<span class="o">}</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>kind</td>
+<td>notification</td>
+<td>Defines payload as &#39;notification&#39;</td>
+</tr>
+<tr>
+<td>type</td>
+<td>cqm.ExConversationChangeNotification</td>
+<td>Describes the type of notification</td>
+</tr>
+<tr>
+<td>body</td>
+<td>changes</td>
+<td>Changes as an array of state updates</td>
+</tr>
+<tr>
+<td>conversationId</td>
+<td><em>UUID</em></td>
+<td>The unique identifier of the conversation</td>
+</tr>
+<tr>
+<td>stage</td>
+<td>CLOSED</td>
+<td>Defines the state of the conversation as <em>CLOSED</em></td>
+</tr>
+<tr>
+<td>participants</td>
+<td><em>ARRAY</em></td>
+<td>The updated list of participants. In this case, the participant list only includes the consumer because the agent is removed as a participant as part of the transfer</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+If your connector should work with post conversation surveys, it must support the multi-dialog client feature and track not only conversation but also dialog state changes <a href="https://developers.liveperson.com/messaging-window-api-tutorials-post-conversation-survey-pcs.html#multi-dialog-conversation" target="_new"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>.
+</aside>
 <script type="application/javascript">
-    // Initialize
     var Tooltips = document.getElementsByClassName('TooltipTrigger');
-
-    // Track all tooltips trigger
     for (var i = 0; i < Tooltips.length; i++) {
-      // Event Handler
       Tooltips[i].addEventListener("mouseenter", function(ev) {
         ev.preventDefault();
         this.style.position = "relative";
@@ -1177,30 +1748,6 @@ Max. 5000 characters
       });
     }  
 </script>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The object requested is hidden for administrators only.</td>
-</tr>
-</tbody></table>
 
       </div>
       <div class="dark-box">
