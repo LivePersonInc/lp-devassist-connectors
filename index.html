@@ -347,6 +347,8 @@
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
 <p>Messaging connects your customers with human agents or bots. A key component is enabling conversations across Messaging apps&mdash;go where your customers are. As part of LivePerson&#39;s open platform we provide a growing number of out-of-the-box connectors, e.g., for SMS <a href="https://developers.liveperson.com/sms-with-liveengage-overview.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>, Facebook Messenger, WhatsApp, and others. In cases where an out-of-the-box solution is not available you can use LivePerson&#39;s APIs to build a custom connector.</p>
+
+<p><br/>Was this section helpful?&emsp; <a href="#" onClick="window.feedback_simple('No')">Yes</a>&emsp;<a href="#" onClick="window.feedback_simple('no')">No</a></p>
 <h2 id='use-cases'>Use Cases</h2>
 <p>A common use case for building your own connector to LiveEngage Messaging is SMS integration. LivePerson offers a SMS Twilio connector out-of-the-box, which is an excellent solution for most use cases. However, there are other cases where you want to use another SMS Gateway or similar:</p>
 
@@ -1748,6 +1750,38 @@ If your connector should work with post conversation surveys, it must support th
       });
     }  
 </script>
+
+<!-- BEGIN LivePerson Monitor. --> 
+
+<script type="text/javascript">window.lpTag=window.lpTag||{},'undefined'==typeof window.lpTag._tagCount?(window.lpTag={wl:lpTag.wl||null,scp:lpTag.scp||null,site:'5313846'||'',section:lpTag.section||'',tagletSection:lpTag.tagletSection||null,autoStart:lpTag.autoStart!==!1,ovr:lpTag.ovr||{domain: 'lptag-a.liveperson.net', tagjs: 'tags-a.liveperson.net'},_v:'1.10.0',_tagCount:1,protocol:'https:',events:{bind:function(t,e,i){lpTag.defer(function(){lpTag.events.bind(t,e,i)},0)},trigger:function(t,e,i){lpTag.defer(function(){lpTag.events.trigger(t,e,i)},1)}},defer:function(t,e){0===e?(this._defB=this._defB||[],this._defB.push(t)):1===e?(this._defT=this._defT||[],this._defT.push(t)):(this._defL=this._defL||[],this._defL.push(t))},load:function(t,e,i){var n=this;setTimeout(function(){n._load(t,e,i)},0)},_load:function(t,e,i){var n=t;t||(n=this.protocol+'//'+(this.ovr&&this.ovr.domain?this.ovr.domain:'lptag.liveperson.net')+'/tag/tag.js?site='+this.site);var o=document.createElement('script');o.setAttribute('charset',e?e:'UTF-8'),i&&o.setAttribute('id',i),o.setAttribute('src',n),document.getElementsByTagName('head').item(0).appendChild(o)},init:function(){this._timing=this._timing||{},this._timing.start=(new Date).getTime();var t=this;window.attachEvent?window.attachEvent('onload',function(){t._domReady('domReady')}):(window.addEventListener('DOMContentLoaded',function(){t._domReady('contReady')},!1),window.addEventListener('load',function(){t._domReady('domReady')},!1)),'undefined'===typeof window._lptStop&&this.load()},start:function(){this.autoStart=!0},_domReady:function(t){this.isDom||(this.isDom=!0,this.events.trigger('LPT','DOM_READY',{t:t})),this._timing[t]=(new Date).getTime()},vars:lpTag.vars||[],dbs:lpTag.dbs||[],ctn:lpTag.ctn||[],sdes:lpTag.sdes||[],hooks:lpTag.hooks||[],identities:lpTag.identities||[],ev:lpTag.ev||[]},lpTag.init()):window.lpTag._tagCount+=1;</script>
+
+<!-- END LivePerson Monitor. --> 
+
+<!-- BEGIN function --> 
+
+<script type="text/javascript">
+window.feedback_simple = function (reply) {
+  var r = new XMLHttpRequest(); 
+  r.open("POST", "https://c31ttcqad0.execute-api.us-east-2.amazonaws.com/alpha/helpful", true);
+  r.setRequestHeader('Accept', 'application/json'); 
+  r.onreadystatechange = function () { 
+    if (r.readyState != 4 || r.status != 200) {
+      console.log("Failure: " + r); 
+      return; 
+    }
+    console.log("Success: " + r.responseText); 
+  };
+  var request = JSON.stringify(
+    {
+      "message": "test"
+    }
+  );
+  var data = JSON.stringify({"email":"tomb@raider.com","name":"LaraCroft"});
+  r.send(data);  
+}
+</script>
+
+<!-- END isHelpful function --> 
 
       </div>
       <div class="dark-box">
