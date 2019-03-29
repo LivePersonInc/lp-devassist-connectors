@@ -203,7 +203,7 @@
     <link href="images/favicon.ico" rel="icon" type="image/ico" />
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;java&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -214,6 +214,7 @@
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="java">java</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -458,6 +459,86 @@ If you are not sure about developing a connector, please contact your account te
     <span class="o">}</span>
   <span class="o">}</span>
 <span class="o">}</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="o">{</span>
+  <span class="s">"client_name"</span><span class="o">:</span> <span class="s">"App name"</span><span class="o">,</span>
+  <span class="s">"description"</span><span class="o">:</span> <span class="s">"App description"</span><span class="o">,</span>
+  <span class="s">"grant_types"</span><span class="o">:</span> <span class="o">[</span>
+    <span class="s">"client_credentials"</span>
+  <span class="o">],</span>
+  <span class="s">"scope"</span><span class="o">:</span> <span class="s">"msg.consumer"</span><span class="o">,</span>
+  <span class="s">"capabilities"</span><span class="o">:</span> <span class="o">{</span>
+    <span class="s">"webhooks"</span><span class="o">:</span> <span class="o">{</span>
+      <span class="s">"ms.MessagingEventNotification.ContentEvent"</span><span class="o">:</span> <span class="o">{</span>
+        <span class="s">"endpoint"</span><span class="o">:</span> <span class="s">"https://your/webhooks/endpoint"</span><span class="o">,</span>
+        <span class="s">"max_retries"</span><span class="o">:</span> <span class="mi">5</span>
+      <span class="o">},</span>
+      <span class="s">"ms.MessagingEventNotification.RichContentEvent"</span><span class="o">:</span> <span class="o">{</span>
+        <span class="s">"endpoint"</span><span class="o">:</span> <span class="s">"https://your/webhooks/endpoint"</span><span class="o">,</span>
+        <span class="s">"max_retries"</span><span class="o">:</span> <span class="mi">5</span>
+      <span class="o">},</span>
+      <span class="s">"ms.MessagingEventNotification.AcceptStatusEvent"</span><span class="o">:</span> <span class="o">{</span>
+        <span class="s">"endpoint"</span><span class="o">:</span> <span class="s">"https://your/webhooks/endpoint"</span><span class="o">,</span>
+        <span class="s">"max_retries"</span><span class="o">:</span> <span class="mi">5</span>
+      <span class="o">},</span>
+      <span class="s">"ms.MessagingEventNotification.ChatStateEvent"</span><span class="o">:</span> <span class="o">{</span>
+        <span class="s">"endpoint"</span><span class="o">:</span> <span class="s">"https://your/webhooks/endpoint"</span><span class="o">,</span>
+        <span class="s">"max_retries"</span><span class="o">:</span> <span class="mi">5</span>
+      <span class="o">},</span>
+      <span class="s">"cqm.ExConversationChangeNotification"</span><span class="o">:</span> <span class="o">{</span>
+        <span class="s">"endpoint"</span><span class="o">:</span> <span class="s">"https://your/webhooks/endpoint"</span><span class="o">,</span>
+        <span class="s">"max_retries"</span><span class="o">:</span> <span class="mi">5</span>
+      <span class="o">}</span>
+    <span class="o">},</span>
+    <span class="s">"engagement"</span><span class="o">:</span> <span class="o">{</span>
+      <span class="s">"design_engagement"</span><span class="o">:</span> <span class="kc">false</span><span class="o">,</span>
+      <span class="s">"design_window"</span><span class="o">:</span> <span class="kc">false</span><span class="o">,</span>
+      <span class="s">"entry_point"</span><span class="o">:</span> <span class="o">[</span>
+        <span class="s">"section"</span>
+      <span class="o">],</span>
+      <span class="s">"visitor_behavior"</span><span class="o">:</span> <span class="o">[</span>
+        <span class="s">"visited_location"</span><span class="o">,</span>
+        <span class="s">"time_on_location"</span><span class="o">,</span>
+        <span class="s">"flow"</span><span class="o">,</span>
+        <span class="s">"engaged_in_session"</span><span class="o">,</span>
+        <span class="s">"about_to_abandon"</span><span class="o">,</span>
+        <span class="s">"cart_value"</span><span class="o">,</span>
+        <span class="s">"cart_items"</span><span class="o">,</span>
+        <span class="s">"visitor_error"</span><span class="o">,</span>
+        <span class="s">"viewed_products"</span><span class="o">,</span>
+        <span class="s">"service_activity"</span>
+      <span class="o">],</span>
+      <span class="s">"target_audience"</span><span class="o">:</span> <span class="o">[</span>
+        <span class="s">"external_referral"</span><span class="o">,</span>
+        <span class="s">"search_keywords"</span><span class="o">,</span>
+        <span class="s">"ip"</span><span class="o">,</span>
+        <span class="s">"platform"</span><span class="o">,</span>
+        <span class="s">"geo_location"</span><span class="o">,</span>
+        <span class="s">"returning_visitors"</span><span class="o">,</span>
+        <span class="s">"marketing_source"</span><span class="o">,</span>
+        <span class="s">"customer_type"</span><span class="o">,</span>
+        <span class="s">"age"</span><span class="o">,</span>
+        <span class="s">"balance"</span><span class="o">,</span>
+        <span class="s">"customer_id"</span><span class="o">,</span>
+        <span class="s">"gender"</span><span class="o">,</span>
+        <span class="s">"store_zip_code"</span><span class="o">,</span>
+        <span class="s">"store_number"</span><span class="o">,</span>
+        <span class="s">"company_size"</span><span class="o">,</span>
+        <span class="s">"registration_date"</span>
+      <span class="o">],</span>
+      <span class="s">"goal"</span><span class="o">:</span> <span class="o">[</span>
+        <span class="s">"url"</span><span class="o">,</span>
+        <span class="s">"purchase_total"</span><span class="o">,</span>
+        <span class="s">"num_of_pages"</span><span class="o">,</span>
+        <span class="s">"lead"</span><span class="o">,</span>
+        <span class="s">"service_activity"</span>
+      <span class="o">],</span>
+      <span class="s">"consumer_identity"</span><span class="o">:</span> <span class="o">[</span>
+        <span class="s">"auth"</span>
+      <span class="o">],</span>
+      <span class="s">"language_selection"</span><span class="o">:</span> <span class="kc">false</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
 <p>The Connector API uses JSON Web Tokens (JWT) allow access to the API. The JWTs are requested using obtain <code>clientId</code> and <code>clientSecret</code>. In order to obtain these intitially you have to register a new LiveEngage application.</p>
 
@@ -591,7 +672,15 @@ In the remainder of this tutorial, the LivePerson APIs listed below will be intr
 https://<span class="k">${</span><span class="nv">authDomain</span><span class="k">}</span>/sentinel/api/account/<span class="k">${</span><span class="nv">accountId</span><span class="k">}</span>/app/token?<span class="se">\</span>
 <span class="nv">v</span><span class="o">=</span>1.0&amp;grant_type<span class="o">=</span>client_credentials&amp;client_id<span class="o">=</span><span class="k">${</span><span class="nv">clientId</span><span class="k">}</span>&amp;client_secret<span class="o">=</span><span class="k">${</span><span class="nv">clientSecret</span><span class="k">}</span> <span class="se">\</span>
   -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"request"</span><span class="p">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">OkHttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OkHttpClient</span><span class="o">();</span>
+
+<span class="n">Request</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Request</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"https://"</span><span class="o">+</span> <span class="n">authDomain</span> <span class="o">+</span><span class="s">"/sentinel/api/account/"</span><span class="o">+</span> <span class="n">accountId</span> <span class="o">+</span><span class="s">"/app/token?v=1.0&amp;grant_type=client_credentials&amp;client_id="</span><span class="o">+</span> <span class="n">clientId</span><span class="o">+</span> <span class="s">"&amp;client_secret="</span><span class="o">+</span> <span class="n">clientSecret</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="kc">null</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/x-www-form-urlencoded"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">newCall</span><span class="o">(</span><span class="n">request</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
 </code></pre>
 <blockquote>
 <p>Make sure to replace <code>${accountId}</code>, <code>${clientId}</code>, and <code>${clientId}</code> with your keys.</p>
@@ -602,10 +691,10 @@ https://<span class="k">${</span><span class="nv">authDomain</span><span class="
     <span class="s2">"access_token"</span>: <span class="s2">"eyJraWQiOiJhcHBqd3QtMTMtMDUtMTciLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1MzEzODQ2IiwiYXpwIjoiODJjNzMwNTMtZDc2My00NzUxLTkyNTYtZjNhNzk5YmM1NGM0Iiwic2NvcGUiOiJtc2cuY29uc3VtZXIiLCJpc3MiOiJTZW50aW5lbCIsImV4cCI6MTU1Mjg5OTM3OSwiaWF0IjoxNTUyODk1Nzc5fQ.rbnof2fWnMxFsubazxcGuAqxj04fwp4MgIgh3FjBv1pFoYmXOxCGjrq62x3SIab2Mp4pLdaWKI6UktatIsWK6cNnTvdJ_NQGE4I-8zC-fMk5fRp1CVFbVjxz0bgPeGPVzpWbgJGmhDVQMuqc2rGI8Rk9uP_aRwFDVPVZDOZ1AtAbGMigdjy7tdBD7Lr4w4vvMT6XW7lhHT0MJLJCQLACYAXbM0Q8ZLovq7vk2f-37BiHknP5LmAS1L_jRIL2encOINslYPNTjrPSEusKlJE2qpzbqvBFNlQlg62vzmdAj0xKKglmfOGdNHkKDEgH6haimxxN_LmzIN99Ew0I1ocJWg"</span>,
     <span class="s2">"token_type"</span>: <span class="s2">"Bearer"</span>
 <span class="o">}</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
-    <span class="s2">"access_token"</span><span class="p">:</span> <span class="s2">"eyJraWQiOiJhcHBqd3QtMTMtMDUtMTciLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1MzEzODQ2IiwiYXpwIjoiODJjNzMwNTMtZDc2My00NzUxLTkyNTYtZjNhNzk5YmM1NGM0Iiwic2NvcGUiOiJtc2cuY29uc3VtZXIiLCJpc3MiOiJTZW50aW5lbCIsImV4cCI6MTU1Mjg5OTM3OSwiaWF0IjoxNTUyODk1Nzc5fQ.rbnof2fWnMxFsubazxcGuAqxj04fwp4MgIgh3FjBv1pFoYmXOxCGjrq62x3SIab2Mp4pLdaWKI6UktatIsWK6cNnTvdJ_NQGE4I-8zC-fMk5fRp1CVFbVjxz0bgPeGPVzpWbgJGmhDVQMuqc2rGI8Rk9uP_aRwFDVPVZDOZ1AtAbGMigdjy7tdBD7Lr4w4vvMT6XW7lhHT0MJLJCQLACYAXbM0Q8ZLovq7vk2f-37BiHknP5LmAS1L_jRIL2encOINslYPNTjrPSEusKlJE2qpzbqvBFNlQlg62vzmdAj0xKKglmfOGdNHkKDEgH6haimxxN_LmzIN99Ew0I1ocJWg"</span><span class="p">,</span>
-    <span class="s2">"token_type"</span><span class="p">:</span> <span class="s2">"Bearer"</span>
-<span class="p">}</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="o">{</span>
+    <span class="s">"access_token"</span><span class="o">:</span> <span class="s">"eyJraWQiOiJhcHBqd3QtMTMtMDUtMTciLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1MzEzODQ2IiwiYXpwIjoiODJjNzMwNTMtZDc2My00NzUxLTkyNTYtZjNhNzk5YmM1NGM0Iiwic2NvcGUiOiJtc2cuY29uc3VtZXIiLCJpc3MiOiJTZW50aW5lbCIsImV4cCI6MTU1Mjg5OTM3OSwiaWF0IjoxNTUyODk1Nzc5fQ.rbnof2fWnMxFsubazxcGuAqxj04fwp4MgIgh3FjBv1pFoYmXOxCGjrq62x3SIab2Mp4pLdaWKI6UktatIsWK6cNnTvdJ_NQGE4I-8zC-fMk5fRp1CVFbVjxz0bgPeGPVzpWbgJGmhDVQMuqc2rGI8Rk9uP_aRwFDVPVZDOZ1AtAbGMigdjy7tdBD7Lr4w4vvMT6XW7lhHT0MJLJCQLACYAXbM0Q8ZLovq7vk2f-37BiHknP5LmAS1L_jRIL2encOINslYPNTjrPSEusKlJE2qpzbqvBFNlQlg62vzmdAj0xKKglmfOGdNHkKDEgH6haimxxN_LmzIN99Ew0I1ocJWg"</span><span class="o">,</span>
+    <span class="s">"token_type"</span><span class="o">:</span> <span class="s">"Bearer"</span>
+<span class="o">}</span>
 </code></pre>
 <p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)"onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)"onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
 <h3 id='request-a-jwt'>Request a JWT</h3>
@@ -679,10 +768,14 @@ Remember — manage your client keys and JWT securely!
 <p>Parse the expiration date from the JWT like this:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="nb">echo</span> <span class="nv">$LP_JWT</span> | sed -e <span class="s1">'s/.*\.\(.*\)\..*/\1/'</span> | base64 --decode | grep -Eo <span class="s1">'"exp":(\d*)'</span>  | cut -d: -f
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">jwtDecode</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'jwt-decode'</span><span class="p">);</span>
-
-<span class="kr">const</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">jwt_decode</span><span class="p">(</span><span class="nx">token</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">decoded</span><span class="p">.</span><span class="nx">exp</span><span class="p">);</span>
+</code></pre><pre class="highlight shell tab-shell"><code><span class="nb">echo</span> <span class="nv">$LP_JWT</span> | sed -e <span class="s1">'s/.*\.\(.*\)\..*/\1/'</span> | base64 --decode | grep -Eo <span class="s1">'"exp":(\d*)'</span>  | cut -d: -f
+</code></pre><pre class="highlight java tab-java"><code><span class="n">String</span> <span class="n">token</span> <span class="o">=</span> <span class="s">"..."</span><span class="o">;</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">DecodedJWT</span> <span class="n">jwt</span> <span class="o">=</span> <span class="n">JWT</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
+    <span class="n">Date</span> <span class="n">expiresAt</span> <span class="o">=</span> <span class="n">jwt</span><span class="o">.</span><span class="na">getExpiresAt</span><span class="o">();</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">JWTDecodeException</span> <span class="n">exception</span><span class="o">){</span>
+    <span class="c1">//Invalid token</span>
+<span class="o">}</span>
 </code></pre><h3 id='jwt-expiration'>JWT expiration</h3>
 <p>JWTs expire after a short time duration such as 1 hour. The expiration timestamp of the JWT can be extracted from the token itself.</p>
 
@@ -714,13 +807,28 @@ Your connector should cache the JWT for its duration of validity. It is recommen
   -d '</span><span class="o">{</span>
     <span class="s2">"ext_consumer_id"</span>: <span class="s2">"</span><span class="k">${</span><span class="nv">customerId</span><span class="k">}</span><span class="s2">"</span>
   <span class="o">}</span><span class="s1">'
-</span></code></pre>
+</span></code></pre><pre class="highlight java tab-java"><code><span class="n">OkHttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OkHttpClient</span><span class="o">();</span>
+
+<span class="n">MediaType</span> <span class="n">mediaType</span> <span class="o">=</span> <span class="n">MediaType</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">);</span>
+<span class="n">RequestBody</span> <span class="n">body</span> <span class="o">=</span> <span class="n">RequestBody</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">mediaType</span><span class="o">,</span> <span class="s">"{\n\t\"ext_consumer_id\":\"vf-random_id0.33113136892746214548813983913\"\n}"</span><span class="o">);</span>
+<span class="n">Request</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Request</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"https://"</span> <span class="o">+</span> <span class="n">idpDomain</span> <span class="o">+</span> <span class="s">"/api/account/"</span><span class="o">+</span> <span class="n">accountId</span> <span class="o">+</span><span class="s">"/consumer?v=1.0"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="n">body</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="s">"Authorization"</span><span class="o">,</span> <span class="n">jwt</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">newCall</span><span class="o">(</span><span class="n">request</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+</code></pre>
 <blockquote>
 <p>If succcessful a 201 response is returned with the JWS:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-    "token": "eyJraWQiOiJhcHBqd3QtMTMtMDUtMTciLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhY2NvdW50X2lkIjoiNTMxMzg0NiIsImV4dF9jb25zdW1lcl9pZCI6InZmLXJhbmRvbV9pZDAuNjg5Mjc0NjIxNDM0MTM0MzI0IiwibHBfY29uc3VtZXJfaWQiOiJhYjMxNzNiZDAxY2IyMDAzMjM4YzM5NTI1ZjE5NDQ0MmM2YmQzMmM2YWYwZTZiYjAyZjY1ZGE2MWI5NmI1ZjIyIn0.SoHQAmoNqCxut73EEFgqYX1y5JOD4skDhGpzko8TMcFxFJnwJChvpKwGTRFIpBFfP0JPItqpKNUs7CrwtpZO4GCTZ9nRJXDMgJ6zpL_-8_aJTxDkryWLk4q1NdqJy7KMebFIRCmzGhcmRGiRcJbceqIgX4hkmcY_tSFLQjVk8_oSrw8w_sv1uarOvFn7q-1XX3bt2eTqJDlq1qT7tAwxiaLESWipjX9H3DajmcUlknTcmyLINAZ3FD5bDtKE6Q_wFM43TCK952kCbjUnJN9txblX-Z1D5LHuV3rsKKUYAYDq09A4_D5G8b3RZggF72llsDUc8JS2mFTrmpoh54hVcg"
-}
+<pre class="highlight shell tab-shell"><code><span class="o">{</span>
+    <span class="s2">"token"</span>: <span class="s2">"eyJraWQiOiJhcHBqd3QtMTMtMDUtMTciLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhY2NvdW50X2lkIjoiNTMxMzg0NiIsImV4dF9jb25zdW1lcl9pZCI6InZmLXJhbmRvbV9pZDAuNjg5Mjc0NjIxNDM0MTM0MzI0IiwibHBfY29uc3VtZXJfaWQiOiJhYjMxNzNiZDAxY2IyMDAzMjM4YzM5NTI1ZjE5NDQ0MmM2YmQzMmM2YWYwZTZiYjAyZjY1ZGE2MWI5NmI1ZjIyIn0.SoHQAmoNqCxut73EEFgqYX1y5JOD4skDhGpzko8TMcFxFJnwJChvpKwGTRFIpBFfP0JPItqpKNUs7CrwtpZO4GCTZ9nRJXDMgJ6zpL_-8_aJTxDkryWLk4q1NdqJy7KMebFIRCmzGhcmRGiRcJbceqIgX4hkmcY_tSFLQjVk8_oSrw8w_sv1uarOvFn7q-1XX3bt2eTqJDlq1qT7tAwxiaLESWipjX9H3DajmcUlknTcmyLINAZ3FD5bDtKE6Q_wFM43TCK952kCbjUnJN9txblX-Z1D5LHuV3rsKKUYAYDq09A4_D5G8b3RZggF72llsDUc8JS2mFTrmpoh54hVcg"</span>
+<span class="o">}</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="o">{</span>
+    <span class="s">"token"</span><span class="o">:</span> <span class="s">"eyJraWQiOiJhcHBqd3QtMTMtMDUtMTciLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhY2NvdW50X2lkIjoiNTMxMzg0NiIsImV4dF9jb25zdW1lcl9pZCI6InZmLXJhbmRvbV9pZDAuNjg5Mjc0NjIxNDM0MTM0MzI0IiwibHBfY29uc3VtZXJfaWQiOiJhYjMxNzNiZDAxY2IyMDAzMjM4YzM5NTI1ZjE5NDQ0MmM2YmQzMmM2YWYwZTZiYjAyZjY1ZGE2MWI5NmI1ZjIyIn0.SoHQAmoNqCxut73EEFgqYX1y5JOD4skDhGpzko8TMcFxFJnwJChvpKwGTRFIpBFfP0JPItqpKNUs7CrwtpZO4GCTZ9nRJXDMgJ6zpL_-8_aJTxDkryWLk4q1NdqJy7KMebFIRCmzGhcmRGiRcJbceqIgX4hkmcY_tSFLQjVk8_oSrw8w_sv1uarOvFn7q-1XX3bt2eTqJDlq1qT7tAwxiaLESWipjX9H3DajmcUlknTcmyLINAZ3FD5bDtKE6Q_wFM43TCK952kCbjUnJN9txblX-Z1D5LHuV3rsKKUYAYDq09A4_D5G8b3RZggF72llsDUc8JS2mFTrmpoh54hVcg"</span>
+<span class="o">}</span>
 </code></pre>
 <p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)"onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)"onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
 <h3 id='retrieve-a-jws'>Retrieve a JWS</h3>
@@ -815,6 +923,55 @@ A JWS does not expire and should be cached by your connector implementation.
         }
     }
 ]'</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">OkHttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OkHttpClient</span><span class="o">();</span>
+
+<span class="n">MediaType</span> <span class="n">mediaType</span> <span class="o">=</span> <span class="n">MediaType</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">);</span>
+<span class="n">RequestBody</span> <span class="n">body</span> <span class="o">=</span> <span class="n">RequestBody</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">mediaType</span><span class="o">,</span> <span class="s">"[{
+        "</span><span class="n">kind</span><span class="s">": "</span><span class="n">req</span><span class="s">",
+        "</span><span class="n">id</span><span class="s">": "</span><span class="mi">4</span><span class="n">b91dd19</span><span class="o">-</span><span class="mi">9</span><span class="n">b0c</span><span class="o">-</span><span class="mi">4354</span><span class="o">-</span><span class="mi">8</span><span class="n">fef</span><span class="o">-</span><span class="mi">4</span><span class="n">f58a45a9c57</span><span class="s">",
+        "</span><span class="n">type</span><span class="s">": "</span><span class="n">userprofile</span><span class="o">.</span><span class="na">SetUserProfile</span><span class="s">",
+        "</span><span class="n">body</span><span class="s">": {
+           "</span><span class="n">authenticatedData</span><span class="s">": {
+                "</span><span class="n">lp_sdes</span><span class="s">": [
+                    {
+                        "</span><span class="n">type</span><span class="s">": "</span><span class="n">ctmrinfo</span><span class="s">",
+                        "</span><span class="n">info</span><span class="s">": {
+                            "</span><span class="n">customerId</span><span class="s">": "</span><span class="mi">138766</span><span class="n">AZE</span><span class="s">",
+                            "</span><span class="n">socialId</span><span class="s">": "</span><span class="mi">1125632</span><span class="s">",
+                            "</span><span class="n">imei</span><span class="s">": "</span><span class="mi">35433545688</span><span class="s">",
+                            "</span><span class="n">userName</span><span class="s">": "</span><span class="n">user000</span><span class="s">"
+                        }
+                    },
+                    {
+                        "</span><span class="n">type</span><span class="s">": "</span><span class="n">personal</span><span class="s">",
+                        "</span><span class="n">personal</span><span class="s">": {
+                            "</span><span class="n">firstname</span><span class="s">": "</span><span class="n">John</span><span class="s">",
+                            "</span><span class="n">lastname</span><span class="s">": "</span><span class="n">Doe</span><span class="s">"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "</span><span class="n">kind</span><span class="s">": "</span><span class="n">req</span><span class="s">",
+        "</span><span class="n">id</span><span class="s">": "</span><span class="mi">533575</span><span class="n">ec</span><span class="o">-</span><span class="n">b092</span><span class="o">-</span><span class="mi">4</span><span class="n">ea6</span><span class="o">-</span><span class="n">ba13</span><span class="o">-</span><span class="mi">25</span><span class="n">a98095e79f</span><span class="s">",
+        "</span><span class="n">type</span><span class="s">": "</span><span class="n">cm</span><span class="o">.</span><span class="na">ConsumerRequestConversation</span><span class="s">",
+        "</span><span class="n">body</span><span class="s">": {
+            "</span><span class="n">channelType</span><span class="s">": "</span><span class="n">MESSAGING</span><span class="s">",
+            "</span><span class="n">brandId</span><span class="s">": accountId
+        }
+    }
+]"</span><span class="o">);</span>
+<span class="n">Request</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Request</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"https://va-at.msg.liveperson.net/api/account/5313846/messaging/consumer/conversation?v=3"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="n">body</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="s">"Authorization"</span><span class="o">,</span> <span class="n">jwt</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="s">"X-LP-ON-BEHALF"</span><span class="o">,</span> <span class="n">jws</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">newCall</span><span class="o">(</span><span class="n">request</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
 </code></pre>
 <blockquote>
 <p>If succcessful a 200 response is returned:</p>
@@ -833,6 +990,22 @@ A JWS does not expire and should be cached by your connector implementation.
             <span class="s2">"conversationId"</span>: <span class="s2">"cbf6e739-dfe6-4e3c-a544-2504afbe8747"</span>
         <span class="o">}</span>,
         <span class="s2">"reqId"</span>: <span class="s2">"533575ec-b092-4ea6-ba13-25a98095e79f"</span>
+    <span class="o">}</span>
+<span class="o">]</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s">"code"</span><span class="o">:</span> <span class="s">"OK"</span><span class="o">,</span>
+        <span class="s">"body"</span><span class="o">:</span> <span class="o">{</span>
+            <span class="s">"msg"</span><span class="o">:</span> <span class="s">"OK User Profile set successfully"</span>
+        <span class="o">},</span>
+        <span class="s">"reqId"</span><span class="o">:</span> <span class="s">"4b91dd19-9b0c-4354-8fef-4f58a45a9c57"</span>
+    <span class="o">},</span>
+    <span class="o">{</span>
+        <span class="s">"code"</span><span class="o">:</span> <span class="s">"OK"</span><span class="o">,</span>
+        <span class="s">"body"</span><span class="o">:</span> <span class="o">{</span>
+            <span class="s">"conversationId"</span><span class="o">:</span> <span class="s">"cbf6e739-dfe6-4e3c-a544-2504afbe8747"</span>
+        <span class="o">},</span>
+        <span class="s">"reqId"</span><span class="o">:</span> <span class="s">"533575ec-b092-4ea6-ba13-25a98095e79f"</span>
     <span class="o">}</span>
 <span class="o">]</span>
 </code></pre>
@@ -897,7 +1070,7 @@ To find the `messagingDomain` domain, please use the Domain API with your accoun
 The conversation id for a customer is managed by the connector. There can be cases where a conversation has been closed not by the connector but by an agent or the system. In this case, a new conversation has to be created. 
 </aside>
 <h2 id='create-a-conversation-with-skill-routing'>Create a conversation with skill routing</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
-  <span class="s1">'https://va-at.msg.liveperson.net/api/account/5313846/messaging/consumer/conversation?v=3'</span> <span class="se">\</span>
+  <span class="s1">'https://${messagingDomain}/api/account/${accountId}/messaging/consumer/conversation?v=3'</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: ${JWT}'</span> <span class="se">\</span>
   -H <span class="s1">'X-LP-ON-BEHALF: ${JWS}'</span> <span class="se">\</span>
@@ -953,6 +1126,22 @@ The conversation id for a customer is managed by the connector. There can be cas
         <span class="s2">"reqId"</span>: <span class="s2">"533575ec-b092-4ea6-ba13-25a98095e79f"</span>
     <span class="o">}</span>
 <span class="o">]</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s">"code"</span><span class="o">:</span> <span class="s">"OK"</span><span class="o">,</span>
+        <span class="s">"body"</span><span class="o">:</span> <span class="o">{</span>
+            <span class="s">"msg"</span><span class="o">:</span> <span class="s">"OK User Profile set successfully"</span>
+        <span class="o">},</span>
+        <span class="s">"reqId"</span><span class="o">:</span> <span class="s">"4b91dd19-9b0c-4354-8fef-4f58a45a9c57"</span>
+    <span class="o">},</span>
+    <span class="o">{</span>
+        <span class="s">"code"</span><span class="o">:</span> <span class="s">"OK"</span><span class="o">,</span>
+        <span class="s">"body"</span><span class="o">:</span> <span class="o">{</span>
+            <span class="s">"conversationId"</span><span class="o">:</span> <span class="s">"cbf6e739-dfe6-4e3c-a544-2504afbe8747"</span>
+        <span class="o">},</span>
+        <span class="s">"reqId"</span><span class="o">:</span> <span class="s">"533575ec-b092-4ea6-ba13-25a98095e79f"</span>
+    <span class="o">}</span>
+<span class="o">]</span>
 </code></pre>
 <p>Skill routing is decided upon conversation creation. If you are planning to route a customer to a specific skill then you should use a campaign with engagement for this.  </p>
 
@@ -994,6 +1183,22 @@ Please note: A campaign and engagement when creating a conversation is a prerequ
         <span class="s2">"reqId"</span>: <span class="s2">"533575ec-b092-4ea6-ba13-25a98095e79f"</span>
     <span class="o">}</span>
 <span class="o">]</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s">"code"</span><span class="o">:</span> <span class="s">"OK"</span><span class="o">,</span>
+        <span class="s">"body"</span><span class="o">:</span> <span class="o">{</span>
+            <span class="s">"msg"</span><span class="o">:</span> <span class="s">"OK User Profile set successfully"</span>
+        <span class="o">},</span>
+        <span class="s">"reqId"</span><span class="o">:</span> <span class="s">"4b91dd19-9b0c-4354-8fef-4f58a45a9c57"</span>
+    <span class="o">},</span>
+    <span class="o">{</span>
+        <span class="s">"code"</span><span class="o">:</span> <span class="s">"BAD_REQUEST"</span><span class="o">,</span>
+        <span class="s">"body"</span><span class="o">:</span> <span class="o">{</span>
+            <span class="s">"msg"</span><span class="o">:</span> <span class="s">"Consumer request conversation failed: User 77d338e4b6bf02affbf9bf00a779cbf06b0fcd7fb1674028e8739acdfa6ae7a2 already has open conversation. Can't open another one."</span>
+        <span class="o">},</span>
+        <span class="s">"reqId"</span><span class="o">:</span> <span class="s">"533575ec-b092-4ea6-ba13-25a98095e79f"</span>
+    <span class="o">}</span>
+<span class="o">]</span>
 </code></pre>
 <p>If a conversation already exists a <code>400 Bad Request</code> response is returned. It is expected that the <code>conversationId</code> is managed by the connector.</p>
 <h2 id='close-conversation'>Close conversation</h2>
@@ -1027,6 +1232,13 @@ Please note: A campaign and engagement when creating a conversation is a prerequ
         <span class="s2">"msg"</span>: <span class="s2">"OK Conversation resolved successfully"</span>
     <span class="o">}</span>,
     <span class="s2">"reqId"</span>: <span class="s2">"c4255004-9c50-4405-8cba-475d761fab1b"</span>
+<span class="o">}</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="o">{</span>
+    <span class="s">"code"</span><span class="o">:</span> <span class="s">"OK"</span><span class="o">,</span>
+    <span class="s">"body"</span><span class="o">:</span> <span class="o">{</span>
+        <span class="s">"msg"</span><span class="o">:</span> <span class="s">"OK Conversation resolved successfully"</span>
+    <span class="o">},</span>
+    <span class="s">"reqId"</span><span class="o">:</span> <span class="s">"c4255004-9c50-4405-8cba-475d761fab1b"</span>
 <span class="o">}</span>
 </code></pre>
 <p>A custom connector can close a conversation at any time. Typically, conversations are closed when the customer&#39;s request is resolved. Because many Messaging apps do not have a notion of &quot;close&quot; or &quot;resolve&quot; you may choose not to close conversations by the connector at all. However, it is still possible that an agent or the system closes a conversation state&mdash;conversation state changes by other participants are tracked by analyzing Webhook notifcations.</p>
@@ -1095,6 +1307,32 @@ Please note: A campaign and engagement when creating a conversation is a prerequ
           }
     }
   }'</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">OkHttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OkHttpClient</span><span class="o">();</span>
+
+<span class="n">MediaType</span> <span class="n">mediaType</span> <span class="o">=</span> <span class="n">MediaType</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">);</span>
+<span class="n">RequestBody</span> <span class="n">body</span> <span class="o">=</span> <span class="n">RequestBody</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">mediaType</span><span class="o">,</span> <span class="s">"{
+    "</span><span class="n">kind</span><span class="s">": "</span><span class="n">req</span><span class="s">",
+    "</span><span class="n">type</span><span class="s">": "</span><span class="n">ms</span><span class="o">.</span><span class="na">PublishEvent</span><span class="s">",
+    "</span><span class="n">id</span><span class="s">": "</span><span class="mi">1556852</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="n">bb3</span><span class="o">-</span><span class="mi">11</span><span class="n">e9</span><span class="o">-</span><span class="mi">8646</span><span class="o">-</span><span class="n">d663bd873d93</span><span class="s">",
+    "</span><span class="n">body</span><span class="s">": {
+        "</span><span class="n">conversationId</span><span class="s">": "</span><span class="n">cbf6e739</span><span class="o">-</span><span class="n">dfe6</span><span class="o">-</span><span class="mi">4</span><span class="n">e3c</span><span class="o">-</span><span class="n">a544</span><span class="o">-</span><span class="mi">2504</span><span class="n">afbe8747</span><span class="s">",
+        "</span><span class="n">dialogId</span><span class="s">": "</span><span class="n">cbf6e739</span><span class="o">-</span><span class="n">dfe6</span><span class="o">-</span><span class="mi">4</span><span class="n">e3c</span><span class="o">-</span><span class="n">a544</span><span class="o">-</span><span class="mi">2504</span><span class="n">afbe8747</span><span class="s">",
+          "</span><span class="n">event</span><span class="s">": {
+              "</span><span class="n">type</span><span class="s">": "</span><span class="n">ContentEvent</span><span class="s">",
+              "</span><span class="n">contentType</span><span class="s">": "</span><span class="n">text</span><span class="o">/</span><span class="n">plain</span><span class="s">",
+              "</span><span class="n">message</span><span class="s">": Hello world!"</span>
+          <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span><span class="s">");
+Request request = new Request.Builder()
+  .url("</span><span class="nl">https:</span><span class="c1">//"+ messagingDomain +"/api/account/"+ accountId +"/messaging/consumer/conversation/send?v=3")</span>
+  <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="n">body</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="s">"Authorization"</span><span class="o">,</span> <span class="n">jwt</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="s">"X-LP-ON-BEHALF"</span><span class="o">,</span> <span class="n">jws</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">newCall</span><span class="o">(</span><span class="n">request</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
 </code></pre>
 <blockquote>
 <p>A <code>200 OK</code> with the following JSON response is returned:</p>
@@ -1105,6 +1343,13 @@ Please note: A campaign and engagement when creating a conversation is a prerequ
         <span class="s2">"sequence"</span>: 0
     <span class="o">}</span>,
     <span class="s2">"reqId"</span>: <span class="s2">"1556852a-4bb3-11e9-8646-d663bd873d93"</span>
+<span class="o">}</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="o">{</span>
+    <span class="s">"code"</span><span class="o">:</span> <span class="s">"OK"</span><span class="o">,</span>
+    <span class="s">"body"</span><span class="o">:</span> <span class="o">{</span>
+        <span class="s">"sequence"</span><span class="o">:</span> <span class="mi">0</span>
+    <span class="o">},</span>
+    <span class="s">"reqId"</span><span class="o">:</span> <span class="s">"1556852a-4bb3-11e9-8646-d663bd873d93"</span>
 <span class="o">}</span>
 </code></pre>
 <p>The Connector API <code>/send</code> endpoint is used to send messages in an open conversation. A text message is published by sending a <code>PublishEvent</code> event object.</p>
@@ -1178,6 +1423,13 @@ Please note: A campaign and engagement when creating a conversation is a prerequ
         <span class="s2">"msg"</span>: <span class="s2">"Bad Request"</span>
     <span class="o">}</span>,
     <span class="s2">"reqId"</span>: <span class="s2">"1556852a-4bb3-11e9-8646-d663bd873d93"</span>
+<span class="o">}</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="o">{</span>
+    <span class="s">"code"</span><span class="o">:</span> <span class="s">"BAD_REQUEST"</span><span class="o">,</span>
+    <span class="s">"body"</span><span class="o">:</span> <span class="o">{</span>
+        <span class="s">"msg"</span><span class="o">:</span> <span class="s">"Bad Request"</span>
+    <span class="o">},</span>
+    <span class="s">"reqId"</span><span class="o">:</span> <span class="s">"1556852a-4bb3-11e9-8646-d663bd873d93"</span>
 <span class="o">}</span>
 </code></pre>
 <aside class="warning">
@@ -1318,6 +1570,61 @@ The subscription to notification types is defined in the application manifest. Y
    <span class="o">}</span>,
    <span class="s2">"type"</span>:<span class="s2">"cqm.ExConversationChangeNotification"</span>
 <span class="o">}</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="o">{</span>
+   <span class="s">"kind"</span><span class="o">:</span><span class="s">"notification"</span><span class="o">,</span>
+   <span class="s">"body"</span><span class="o">:{</span>
+      <span class="s">"subscriptionId"</span><span class="o">:</span><span class="s">"ea7ecc5a-58c4-4a16-9510-4868bef08d79"</span><span class="o">,</span>
+      <span class="s">"changes"</span><span class="o">:[</span>
+         <span class="o">{</span>
+            <span class="s">"type"</span><span class="o">:</span><span class="s">"UPSERT"</span><span class="o">,</span>
+            <span class="s">"result"</span><span class="o">:{</span>
+               <span class="s">"convId"</span><span class="o">:</span><span class="s">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span><span class="o">,</span>
+               <span class="s">"effectiveTTR"</span><span class="o">:</span><span class="mi">1553590349893</span><span class="o">,</span>
+               <span class="s">"conversationDetails"</span><span class="o">:{</span>
+                  <span class="s">"skillId"</span><span class="o">:</span><span class="s">"558327413"</span><span class="o">,</span>
+                  <span class="s">"participants"</span><span class="o">:[</span>
+                     <span class="o">{</span>
+                        <span class="s">"id"</span><span class="o">:</span><span class="s">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span><span class="o">,</span>
+                        <span class="s">"role"</span><span class="o">:</span><span class="s">"CONSUMER"</span>
+                     <span class="o">}</span>
+                  <span class="o">],</span>
+                  <span class="s">"dialogs"</span><span class="o">:[</span>
+                     <span class="o">{</span>
+                        <span class="s">"dialogId"</span><span class="o">:</span><span class="s">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span><span class="o">,</span>
+                        <span class="s">"participantsDetails"</span><span class="o">:[</span>
+                           <span class="o">{</span>
+                              <span class="s">"id"</span><span class="o">:</span><span class="s">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span><span class="o">,</span>
+                              <span class="s">"role"</span><span class="o">:</span><span class="s">"CONSUMER"</span><span class="o">,</span>
+                              <span class="s">"state"</span><span class="o">:</span><span class="s">"ACTIVE"</span>
+                           <span class="o">}</span>
+                        <span class="o">],</span>
+                        <span class="s">"dialogType"</span><span class="o">:</span><span class="s">"MAIN"</span><span class="o">,</span>
+                        <span class="s">"channelType"</span><span class="o">:</span><span class="s">"MESSAGING"</span><span class="o">,</span>
+                        <span class="s">"state"</span><span class="o">:</span><span class="s">"OPEN"</span><span class="o">,</span>
+                        <span class="s">"creationTs"</span><span class="o">:</span><span class="mi">1553589749650</span><span class="o">,</span>
+                        <span class="s">"metaDataLastUpdateTs"</span><span class="o">:</span><span class="mi">1553589749650</span>
+                     <span class="o">}</span>
+                  <span class="o">],</span>
+                  <span class="s">"brandId"</span><span class="o">:</span><span class="s">"${accountId}"</span><span class="o">,</span>
+                  <span class="s">"state"</span><span class="o">:</span><span class="s">"OPEN"</span><span class="o">,</span>
+                  <span class="s">"stage"</span><span class="o">:</span><span class="s">"OPEN"</span><span class="o">,</span>
+                  <span class="s">"startTs"</span><span class="o">:</span><span class="mi">1553589749650</span><span class="o">,</span>
+                  <span class="s">"metaDataLastUpdateTs"</span><span class="o">:</span><span class="mi">1553589749650</span><span class="o">,</span>
+                  <span class="s">"ttr"</span><span class="o">:{</span>
+                     <span class="s">"ttrType"</span><span class="o">:</span><span class="s">"PRIORITIZED"</span><span class="o">,</span>
+                     <span class="s">"value"</span><span class="o">:</span><span class="mi">600</span>
+                  <span class="o">},</span>
+                  <span class="s">"conversationHandlerDetails"</span><span class="o">:{</span>
+                     <span class="s">"accountId"</span><span class="o">:</span><span class="s">"${accountId}"</span><span class="o">,</span>
+                     <span class="s">"skillId"</span><span class="o">:</span><span class="s">"558327413"</span>
+                  <span class="o">}</span>
+               <span class="o">}</span>
+            <span class="o">}</span>
+         <span class="o">}</span>
+      <span class="o">]</span>
+   <span class="o">},</span>
+   <span class="s">"type"</span><span class="o">:</span><span class="s">"cqm.ExConversationChangeNotification"</span>
+<span class="o">}</span>
 </code></pre>
 <p>If the application subscribes to <code>ExConversationChangeNotification</code> events, the webhook endpoint receives the following payload after a conversation was successfully created.</p>
 
@@ -1424,6 +1731,70 @@ The subscription to notification types is defined in the application manifest. Y
    <span class="o">}</span>,
    <span class="s2">"type"</span>:<span class="s2">"cqm.ExConversationChangeNotification"</span>
 <span class="o">}</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="o">{</span>
+   <span class="s">"kind"</span><span class="o">:</span><span class="s">"notification"</span><span class="o">,</span>
+   <span class="s">"body"</span><span class="o">:{</span>
+      <span class="s">"subscriptionId"</span><span class="o">:</span><span class="s">"ea7ecc5a-58c4-4a16-9510-4868bef08d79"</span><span class="o">,</span>
+      <span class="s">"changes"</span><span class="o">:[</span>
+         <span class="o">{</span>
+            <span class="s">"type"</span><span class="o">:</span><span class="s">"UPSERT"</span><span class="o">,</span>
+            <span class="s">"result"</span><span class="o">:{</span>
+               <span class="s">"convId"</span><span class="o">:</span><span class="s">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span><span class="o">,</span>
+               <span class="s">"effectiveTTR"</span><span class="o">:</span><span class="mi">1553590349893</span><span class="o">,</span>
+               <span class="s">"conversationDetails"</span><span class="o">:{</span>
+                  <span class="s">"skillId"</span><span class="o">:</span><span class="s">"558327413"</span><span class="o">,</span>
+                  <span class="s">"participants"</span><span class="o">:[</span>
+                     <span class="o">{</span>
+                        <span class="s">"id"</span><span class="o">:</span><span class="s">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span><span class="o">,</span>
+                        <span class="s">"role"</span><span class="o">:</span><span class="s">"CONSUMER"</span>
+                     <span class="o">},</span>
+                     <span class="o">{</span>
+                        <span class="s">"id"</span><span class="o">:</span><span class="s">"e9b2867c-f984-5727-b034-fc9c6800bd9c"</span><span class="o">,</span>
+                        <span class="s">"role"</span><span class="o">:</span><span class="s">"ASSIGNED_AGENT"</span>
+                     <span class="o">}</span>
+                  <span class="o">],</span>
+                  <span class="s">"dialogs"</span><span class="o">:[</span>
+                     <span class="o">{</span>
+                        <span class="s">"dialogId"</span><span class="o">:</span><span class="s">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span><span class="o">,</span>
+                        <span class="s">"participantsDetails"</span><span class="o">:[</span>
+                           <span class="o">{</span>
+                              <span class="s">"id"</span><span class="o">:</span><span class="s">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span><span class="o">,</span>
+                              <span class="s">"role"</span><span class="o">:</span><span class="s">"CONSUMER"</span><span class="o">,</span>
+                              <span class="s">"state"</span><span class="o">:</span><span class="s">"ACTIVE"</span>
+                           <span class="o">},</span>
+                           <span class="o">{</span>
+                              <span class="s">"id"</span><span class="o">:</span><span class="s">"e9b2867c-f984-5727-b034-fc9c6800bd9c"</span><span class="o">,</span>
+                              <span class="s">"role"</span><span class="o">:</span><span class="s">"ASSIGNED_AGENT"</span><span class="o">,</span>
+                              <span class="s">"state"</span><span class="o">:</span><span class="s">"ACTIVE"</span>
+                           <span class="o">}</span>
+                        <span class="o">],</span>
+                        <span class="s">"dialogType"</span><span class="o">:</span><span class="s">"MAIN"</span><span class="o">,</span>
+                        <span class="s">"channelType"</span><span class="o">:</span><span class="s">"MESSAGING"</span><span class="o">,</span>
+                        <span class="s">"state"</span><span class="o">:</span><span class="s">"OPEN"</span><span class="o">,</span>
+                        <span class="s">"creationTs"</span><span class="o">:</span><span class="mi">1553589749650</span><span class="o">,</span>
+                        <span class="s">"metaDataLastUpdateTs"</span><span class="o">:</span><span class="mi">1553589749650</span>
+                     <span class="o">}</span>
+                  <span class="o">],</span>
+                  <span class="s">"brandId"</span><span class="o">:</span><span class="s">"${accountId}"</span><span class="o">,</span>
+                  <span class="s">"state"</span><span class="o">:</span><span class="s">"OPEN"</span><span class="o">,</span>
+                  <span class="s">"stage"</span><span class="o">:</span><span class="s">"OPEN"</span><span class="o">,</span>
+                  <span class="s">"startTs"</span><span class="o">:</span><span class="mi">1553589749650</span><span class="o">,</span>
+                  <span class="s">"metaDataLastUpdateTs"</span><span class="o">:</span><span class="mi">1553590954025</span><span class="o">,</span>
+                  <span class="s">"ttr"</span><span class="o">:{</span>
+                     <span class="s">"ttrType"</span><span class="o">:</span><span class="s">"PRIORITIZED"</span><span class="o">,</span>
+                     <span class="s">"value"</span><span class="o">:</span><span class="mi">600</span>
+                  <span class="o">},</span>
+                  <span class="s">"conversationHandlerDetails"</span><span class="o">:{</span>
+                     <span class="s">"accountId"</span><span class="o">:</span><span class="s">"${accountId}"</span><span class="o">,</span>
+                     <span class="s">"skillId"</span><span class="o">:</span><span class="s">"558327413"</span>
+                  <span class="o">}</span>
+               <span class="o">}</span>
+            <span class="o">}</span>
+         <span class="o">}</span>
+      <span class="o">]</span>
+   <span class="o">},</span>
+   <span class="s">"type"</span><span class="o">:</span><span class="s">"cqm.ExConversationChangeNotification"</span>
+<span class="o">}</span>
 </code></pre>
 <p>When an agent joins a conversation, this triggers an <code>cqm.ExConversationChangeNotification</code> update. </p>
 
@@ -1489,6 +1860,30 @@ The subscription to notification types is defined in the application manifest. Y
       <span class="o">]</span>
    <span class="o">}</span>,
    <span class="s2">"type"</span>:<span class="s2">"ms.MessagingEventNotification"</span>
+<span class="o">}</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="o">{</span>
+   <span class="s">"kind"</span><span class="o">:</span><span class="s">"notification"</span><span class="o">,</span>
+   <span class="s">"body"</span><span class="o">:{</span>
+      <span class="s">"changes"</span><span class="o">:[</span>
+         <span class="o">{</span>
+            <span class="s">"sequence"</span><span class="o">:</span><span class="mi">5</span><span class="o">,</span>
+            <span class="s">"originatorId"</span><span class="o">:</span><span class="s">"e9b2867c-f984-5727-b034-fc9c6800bd9c"</span><span class="o">,</span>
+            <span class="s">"originatorMetadata"</span><span class="o">:{</span>
+               <span class="s">"id"</span><span class="o">:</span><span class="s">"e9b2867c-f984-5727-b034-fc9c6800bd9c"</span><span class="o">,</span>
+               <span class="s">"role"</span><span class="o">:</span><span class="s">"ASSIGNED_AGENT"</span>
+            <span class="o">},</span>
+            <span class="s">"serverTimestamp"</span><span class="o">:</span><span class="mi">1553593406049</span><span class="o">,</span>
+            <span class="s">"event"</span><span class="o">:{</span>
+               <span class="s">"type"</span><span class="o">:</span><span class="s">"ContentEvent"</span><span class="o">,</span>
+               <span class="s">"message"</span><span class="o">:</span><span class="s">"This is a reply!"</span><span class="o">,</span>
+               <span class="s">"contentType"</span><span class="o">:</span><span class="s">"text/plain"</span>
+            <span class="o">},</span>
+            <span class="s">"conversationId"</span><span class="o">:</span><span class="s">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span><span class="o">,</span>
+            <span class="s">"dialogId"</span><span class="o">:</span><span class="s">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span>
+         <span class="o">}</span>
+      <span class="o">]</span>
+   <span class="o">},</span>
+   <span class="s">"type"</span><span class="o">:</span><span class="s">"ms.MessagingEventNotification"</span>
 <span class="o">}</span>
 </code></pre>
 <p>When an agent sends a message to a conversation, a <code>ms.MessagingEventNotification</code> is triggered.</p>
@@ -1616,6 +2011,61 @@ A customer can be the originator of a message, and should hence be filtered from
    <span class="o">}</span>,
    <span class="s2">"type"</span>:<span class="s2">"cqm.ExConversationChangeNotification"</span>
 <span class="o">}</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="o">{</span>
+   <span class="s">"kind"</span><span class="o">:</span><span class="s">"notification"</span><span class="o">,</span>
+   <span class="s">"body"</span><span class="o">:{</span>
+      <span class="s">"subscriptionId"</span><span class="o">:</span><span class="s">"ea7ecc5a-58c4-4a16-9510-4868bef08d79"</span><span class="o">,</span>
+      <span class="s">"changes"</span><span class="o">:[</span>
+         <span class="o">{</span>
+            <span class="s">"type"</span><span class="o">:</span><span class="s">"UPSERT"</span><span class="o">,</span>
+            <span class="s">"result"</span><span class="o">:{</span>
+               <span class="s">"convId"</span><span class="o">:</span><span class="s">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span><span class="o">,</span>
+               <span class="s">"effectiveTTR"</span><span class="o">:</span><span class="mi">1553598420199</span><span class="o">,</span>
+               <span class="s">"conversationDetails"</span><span class="o">:{</span>
+                  <span class="s">"skillId"</span><span class="o">:</span><span class="s">"99999999"</span><span class="o">,</span>
+                  <span class="s">"participants"</span><span class="o">:[</span>
+                     <span class="o">{</span>
+                        <span class="s">"id"</span><span class="o">:</span><span class="s">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span><span class="o">,</span>
+                        <span class="s">"role"</span><span class="o">:</span><span class="s">"CONSUMER"</span>
+                     <span class="o">}</span>
+                  <span class="o">],</span>
+                  <span class="s">"dialogs"</span><span class="o">:[</span>
+                     <span class="o">{</span>
+                        <span class="s">"dialogId"</span><span class="o">:</span><span class="s">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span><span class="o">,</span>
+                        <span class="s">"participantsDetails"</span><span class="o">:[</span>
+                           <span class="o">{</span>
+                              <span class="s">"id"</span><span class="o">:</span><span class="s">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span><span class="o">,</span>
+                              <span class="s">"role"</span><span class="o">:</span><span class="s">"CONSUMER"</span><span class="o">,</span>
+                              <span class="s">"state"</span><span class="o">:</span><span class="s">"ACTIVE"</span>
+                           <span class="o">}</span>
+                        <span class="o">],</span>
+                        <span class="s">"dialogType"</span><span class="o">:</span><span class="s">"MAIN"</span><span class="o">,</span>
+                        <span class="s">"channelType"</span><span class="o">:</span><span class="s">"MESSAGING"</span><span class="o">,</span>
+                        <span class="s">"state"</span><span class="o">:</span><span class="s">"OPEN"</span><span class="o">,</span>
+                        <span class="s">"creationTs"</span><span class="o">:</span><span class="mi">1553589749650</span><span class="o">,</span>
+                        <span class="s">"metaDataLastUpdateTs"</span><span class="o">:</span><span class="mi">1553589749650</span>
+                     <span class="o">}</span>
+                  <span class="o">],</span>
+                  <span class="s">"brandId"</span><span class="o">:</span><span class="s">"${accountId}"</span><span class="o">,</span>
+                  <span class="s">"state"</span><span class="o">:</span><span class="s">"OPEN"</span><span class="o">,</span>
+                  <span class="s">"stage"</span><span class="o">:</span><span class="s">"OPEN"</span><span class="o">,</span>
+                  <span class="s">"startTs"</span><span class="o">:</span><span class="mi">1553589749650</span><span class="o">,</span>
+                  <span class="s">"metaDataLastUpdateTs"</span><span class="o">:</span><span class="mi">1553597820083</span><span class="o">,</span>
+                  <span class="s">"ttr"</span><span class="o">:{</span>
+                     <span class="s">"ttrType"</span><span class="o">:</span><span class="s">"PRIORITIZED"</span><span class="o">,</span>
+                     <span class="s">"value"</span><span class="o">:</span><span class="mi">600</span>
+                  <span class="o">},</span>
+                  <span class="s">"conversationHandlerDetails"</span><span class="o">:{</span>
+                     <span class="s">"accountId"</span><span class="o">:</span><span class="s">"${accountId}"</span><span class="o">,</span>
+                     <span class="s">"skillId"</span><span class="o">:</span><span class="s">"99999999"</span>
+                  <span class="o">}</span>
+               <span class="o">}</span>
+            <span class="o">}</span>
+         <span class="o">}</span>
+      <span class="o">]</span>
+   <span class="o">},</span>
+   <span class="s">"type"</span><span class="o">:</span><span class="s">"cqm.ExConversationChangeNotification"</span>
+<span class="o">}</span>
 </code></pre>
 <p>A skill transfer consists of two state changes in the notification: the agent is removed as a participant and the skill id is updated.</p>
 
@@ -1726,6 +2176,73 @@ A customer can be the originator of a message, and should hence be filtered from
    <span class="o">}</span>,
    <span class="s2">"type"</span>:<span class="s2">"cqm.ExConversationChangeNotification"</span>
 <span class="o">}</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="o">{</span>
+   <span class="s">"kind"</span><span class="o">:</span><span class="s">"notification"</span><span class="o">,</span>
+   <span class="s">"body"</span><span class="o">:{</span>
+      <span class="s">"subscriptionId"</span><span class="o">:</span><span class="s">"0ce06a28-455d-4a31-81f1-e3a9de585e43"</span><span class="o">,</span>
+      <span class="s">"changes"</span><span class="o">:[</span>
+         <span class="o">{</span>
+            <span class="s">"type"</span><span class="o">:</span><span class="s">"UPSERT"</span><span class="o">,</span>
+            <span class="s">"result"</span><span class="o">:{</span>
+               <span class="s">"convId"</span><span class="o">:</span><span class="s">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span><span class="o">,</span>
+               <span class="s">"effectiveTTR"</span><span class="o">:-</span><span class="mi">1</span><span class="o">,</span>
+               <span class="s">"conversationDetails"</span><span class="o">:{</span>
+                  <span class="s">"skillId"</span><span class="o">:</span><span class="s">"558327413"</span><span class="o">,</span>
+                  <span class="s">"participants"</span><span class="o">:[</span>
+                     <span class="o">{</span>
+                        <span class="s">"id"</span><span class="o">:</span><span class="s">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span><span class="o">,</span>
+                        <span class="s">"role"</span><span class="o">:</span><span class="s">"CONSUMER"</span>
+                     <span class="o">},</span>
+                     <span class="o">{</span>
+                        <span class="s">"id"</span><span class="o">:</span><span class="s">"e9b2867c-f984-5727-b034-fc9c6800bd9c"</span><span class="o">,</span>
+                        <span class="s">"role"</span><span class="o">:</span><span class="s">"ASSIGNED_AGENT"</span>
+                     <span class="o">}</span>
+                  <span class="o">],</span>
+                  <span class="s">"dialogs"</span><span class="o">:[</span>
+                     <span class="o">{</span>
+                        <span class="s">"dialogId"</span><span class="o">:</span><span class="s">"f2384f56-57d5-4087-bd47-8df0ec3102f6"</span><span class="o">,</span>
+                        <span class="s">"participantsDetails"</span><span class="o">:[</span>
+                           <span class="o">{</span>
+                              <span class="s">"id"</span><span class="o">:</span><span class="s">"5b0f3b3574c1a8eb71aebf79cf437cb3f6010b9a6df94771c22e5c637285f5f2"</span><span class="o">,</span>
+                              <span class="s">"role"</span><span class="o">:</span><span class="s">"CONSUMER"</span><span class="o">,</span>
+                              <span class="s">"state"</span><span class="o">:</span><span class="s">"ACTIVE"</span>
+                           <span class="o">},</span>
+                           <span class="o">{</span>
+                              <span class="s">"id"</span><span class="o">:</span><span class="s">"e9b2867c-f984-5727-b034-fc9c6800bd9c"</span><span class="o">,</span>
+                              <span class="s">"role"</span><span class="o">:</span><span class="s">"ASSIGNED_AGENT"</span><span class="o">,</span>
+                              <span class="s">"state"</span><span class="o">:</span><span class="s">"ACTIVE"</span>
+                           <span class="o">}</span>
+                        <span class="o">],</span>
+                        <span class="s">"dialogType"</span><span class="o">:</span><span class="s">"MAIN"</span><span class="o">,</span>
+                        <span class="s">"channelType"</span><span class="o">:</span><span class="s">"MESSAGING"</span><span class="o">,</span>
+                        <span class="s">"state"</span><span class="o">:</span><span class="s">"CLOSE"</span><span class="o">,</span>
+                        <span class="s">"creationTs"</span><span class="o">:</span><span class="mi">1553589749650</span><span class="o">,</span>
+                        <span class="s">"endTs"</span><span class="o">:</span><span class="mi">1553599771074</span><span class="o">,</span>
+                        <span class="s">"metaDataLastUpdateTs"</span><span class="o">:</span><span class="mi">1553599771074</span><span class="o">,</span>
+                        <span class="s">"closedBy"</span><span class="o">:</span><span class="s">"AGENT"</span>
+                     <span class="o">}</span>
+                  <span class="o">],</span>
+                  <span class="s">"brandId"</span><span class="o">:</span><span class="s">"5313846"</span><span class="o">,</span>
+                  <span class="s">"state"</span><span class="o">:</span><span class="s">"CLOSE"</span><span class="o">,</span>
+                  <span class="s">"stage"</span><span class="o">:</span><span class="s">"CLOSE"</span><span class="o">,</span>
+                  <span class="s">"closeReason"</span><span class="o">:</span><span class="s">"AGENT"</span><span class="o">,</span>
+                  <span class="s">"startTs"</span><span class="o">:</span><span class="mi">1553589749650</span><span class="o">,</span>
+                  <span class="s">"metaDataLastUpdateTs"</span><span class="o">:</span><span class="mi">1553599771074</span><span class="o">,</span>
+                  <span class="s">"ttr"</span><span class="o">:{</span>
+                     <span class="s">"ttrType"</span><span class="o">:</span><span class="s">"PRIORITIZED"</span><span class="o">,</span>
+                     <span class="s">"value"</span><span class="o">:</span><span class="mi">600</span>
+                  <span class="o">},</span>
+                  <span class="s">"conversationHandlerDetails"</span><span class="o">:{</span>
+                     <span class="s">"accountId"</span><span class="o">:</span><span class="s">"5313846"</span><span class="o">,</span>
+                     <span class="s">"skillId"</span><span class="o">:</span><span class="s">"558327413"</span>
+                  <span class="o">}</span>
+               <span class="o">}</span>
+            <span class="o">}</span>
+         <span class="o">}</span>
+      <span class="o">]</span>
+   <span class="o">},</span>
+   <span class="s">"type"</span><span class="o">:</span><span class="s">"cqm.ExConversationChangeNotification"</span>
+<span class="o">}</span>
 </code></pre>
 <table><thead>
 <tr>
@@ -1820,6 +2337,7 @@ window.lpDevAssist.sendFeedbackSimple = function (answer) {
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="java">java</a>
           </div>
       </div>
     </div>
