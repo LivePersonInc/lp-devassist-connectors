@@ -2326,7 +2326,7 @@ window.lpDevAssist.sendFeedbackSimple = function (answer) {
     }
     console.log("Success: " + r.responseText); 
   };
-  var data = JSON.stringify({"feedback":lpDevAssist,"item":window.location});
+  var data = JSON.stringify({"feedback":answer,"item":window.location});
   r.send(data);  
 }
 </script>
