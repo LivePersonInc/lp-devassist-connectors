@@ -349,7 +349,16 @@
         <h1 id='introduction'>Introduction</h1>
 <p>Messaging connects your customers with human agents or bots. A key component is enabling conversations across Messaging apps&mdash;go where your customers are. As part of LivePerson&#39;s open platform we provide a growing number of out-of-the-box connectors, e.g., for SMS <a href="https://developers.liveperson.com/sms-with-liveengage-overview.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>, Facebook Messenger, WhatsApp, and others. In cases where an out-of-the-box solution is not available you can use LivePerson&#39;s APIs to build a custom connector.</p>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us your feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h2 id='use-cases'>Use Cases</h2>
 <p>A common use case for building your own connector to LiveEngage Messaging is SMS integration. LivePerson offers a SMS Twilio connector out-of-the-box, which is an excellent solution for most use cases. However, there are other cases where you want to use another SMS Gateway or similar:</p>
 
@@ -365,7 +374,16 @@
 If you are not sure about developing a connector, please contact your account team to discuss the best solution fit for your use case!
 </aside>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h2 id='about-messaging'>About Messaging</h2>
 <p>Messaging is centered around <span class="TooltipTrigger" data-tooltips="A conversation is an interactive communication between customer and  agent/bot. Its participants are exchanging text messages or other media. Messaging conversations are asynchronous by default. Synchronous interactions such as voice and video interactions are supported as well." data-position="OnBottom">conversations</span>. When a customer first connects to LiveEngage, they will do so by creating a conversation. A new conversation is assigned to an agent or bot. Not every Messaging app has a notion of conversation&mdash;in the case of SMS messages are of exchanged in a sequence. </p>
 
@@ -374,7 +392,16 @@ If you are not sure about developing a connector, please contact your account te
 <p>Customers, agents, agent managers, or bots are all identifiable participants in a conversation. Often customers are not only introduced using an ID but carry additional information, such as name and contact data. This information is sent by using 
  <span class="TooltipTrigger" data-tooltips="Engagement Attributes are specific customer information such as product viewed, purchase information, errors the visitor encountered, and search results. They can be collected before or during a conversation. Engagement Attributes are also referred to as SDEs (Standard Data Entity)" data-position="OnBottom">Engagement Attributes</span>.</p>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us your feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h1 id='prerequisites'>Prerequisites</h1><h2 id='install-an-application'>Install an application</h2>
 <blockquote>
 <p>Manifest example (JSON):</p>
@@ -593,7 +620,16 @@ The parameter `client_name` will be visible to the agent as the source of the co
 
 <p>After filling in the JSON Template with the required data, please contact your Account Management team to register your connector application.</p>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h3 id='result'>Result</h3>
 <p>If the application installation is successful you will receive the client id token and the client secret token, which is confidential:</p>
 
@@ -696,7 +732,16 @@ https://<span class="k">${</span><span class="nv">authDomain</span><span class="
     <span class="s">"token_type"</span><span class="o">:</span> <span class="s">"Bearer"</span>
 <span class="o">}</span>
 </code></pre>
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h3 id='request-a-jwt'>Request a JWT</h3>
 <p><strong>POST</strong> https://${authDomain}/sentinel/api/account/${accountId}/app/token?v=1.0
 &amp;grant_type=client_credentials&amp;client_id=${clientId}&amp;client_secret=${clientSecret}</p>
@@ -830,7 +875,7 @@ Your connector should cache the JWT for its duration of validity. It is recommen
     <span class="s">"token"</span><span class="o">:</span> <span class="s">"eyJraWQiOiJhcHBqd3QtMTMtMDUtMTciLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhY2NvdW50X2lkIjoiNTMxMzg0NiIsImV4dF9jb25zdW1lcl9pZCI6InZmLXJhbmRvbV9pZDAuNjg5Mjc0NjIxNDM0MTM0MzI0IiwibHBfY29uc3VtZXJfaWQiOiJhYjMxNzNiZDAxY2IyMDAzMjM4YzM5NTI1ZjE5NDQ0MmM2YmQzMmM2YWYwZTZiYjAyZjY1ZGE2MWI5NmI1ZjIyIn0.SoHQAmoNqCxut73EEFgqYX1y5JOD4skDhGpzko8TMcFxFJnwJChvpKwGTRFIpBFfP0JPItqpKNUs7CrwtpZO4GCTZ9nRJXDMgJ6zpL_-8_aJTxDkryWLk4q1NdqJy7KMebFIRCmzGhcmRGiRcJbceqIgX4hkmcY_tSFLQjVk8_oSrw8w_sv1uarOvFn7q-1XX3bt2eTqJDlq1qT7tAwxiaLESWipjX9H3DajmcUlknTcmyLINAZ3FD5bDtKE6Q_wFM43TCK952kCbjUnJN9txblX-Z1D5LHuV3rsKKUYAYDq09A4_D5G8b3RZggF72llsDUc8JS2mFTrmpoh54hVcg"</span>
 <span class="o">}</span>
 </code></pre>
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1, null, this)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0, null, this)">No</a></p>
 <h3 id='retrieve-a-jws'>Retrieve a JWS</h3>
 <p>Use the domain API to retrieve the domain of the LivePerson IDP service. The <code>accountId</code> is specified as a variable in the path.</p>
 <h3 id='request-2'>Request</h3>
@@ -1013,7 +1058,16 @@ A JWS does not expire and should be cached by your connector implementation.
 
 <p>Every event has a <code>type</code> and an <code>id</code>. To generate the <code>id</code> in each request please use a UUID library of your choice to automatically generate an ID that adheres to the Universally Unique Identifier (UUID) v4 standard.</p>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h3 id='request-3'>Request</h3>
 <p><strong>POST</strong> https://${messagingDomain}/api/account/${accountId}/messaging/consumer/conversation?v=3</p>
 
@@ -1162,7 +1216,16 @@ The conversation id for a customer is managed by the connector. There can be cas
 Please note: A campaign and engagement when creating a conversation is a prerequisite to reporting!
 </aside>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h3 id='conversation-already-exists'>Conversation already exists</h3>
 <blockquote>
 <p>If a conversation already exists you will receive a response like this:</p>
@@ -1243,7 +1306,16 @@ Please note: A campaign and engagement when creating a conversation is a prerequ
 </code></pre>
 <p>A custom connector can close a conversation at any time. Typically, conversations are closed when the customer&#39;s request is resolved. Because many Messaging apps do not have a notion of &quot;close&quot; or &quot;resolve&quot; you may choose not to close conversations by the connector at all. However, it is still possible that an agent or the system closes a conversation state&mdash;conversation state changes by other participants are tracked by analyzing Webhook notifcations.</p>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h3 id='request-4'>Request</h3>
 <p><strong>POST</strong> https://${messagingDomain}/api/account/${accountId}/messaging/consumer/conversation/send?v=3&#39;</p>
 <h3 id='https-headers-2'>HTTPS headers</h3>
@@ -1354,7 +1426,16 @@ Request request = new Request.Builder()
 </code></pre>
 <p>The Connector API <code>/send</code> endpoint is used to send messages in an open conversation. A text message is published by sending a <code>PublishEvent</code> event object.</p>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h3 id='request-5'>Request</h3>
 <p><strong>POST</strong> https://${messagingDomain}/api/account/${accountId}/messaging/consumer/conversation/send?v=3</p>
 <h3 id='https-headers-3'>HTTPS headers</h3>
@@ -1438,7 +1519,16 @@ The size of the JSON request object cannot exceed 5000 characters. If a message 
 <h1 id='webhooks'>Webhooks</h1>
 <p>Connector API <code>/conversation</code> and <code>/send</code> endpoints provide you with the means to send customer messages to LiveEngage Messaging. If you want to receive updates on a conversation, e.g. messages sent by an agent, you have to expose a public HTTPS POST Webhook endpoint to receive those notifications. </p>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h2 id='requirements'>Requirements</h2>
 <p>The Webhook notifications are sent as POST requests over SSL only (HTTPS). The application endpoint is required to be set up with a <strong>valid</strong> web-server TLS/SSL certificate.</p>
 
@@ -1450,11 +1540,29 @@ The size of the JSON request object cannot exceed 5000 characters. If a message 
 The Webhook notifications are sent globally for all Messaging channels of an account. A registered endpoint will also receive notifications on conversations that were started outside of your connector.
 </aside>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h2 id='authentication-2'>Authentication</h2>
 <p>Authentication is verified by your Webhook endpoint based on the <code>clientId</code> and <code>clientSecret</code> of your Webhook notification. For authentication it is required to analyze all HTTPS POST request headers and check the SHA1 signature of the payload using <code>clientSecret</code> as the key. </p>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h3 id='request-headers'>Request headers</h3>
 <table><thead>
 <tr>
@@ -1510,7 +1618,16 @@ The Webhook notifications are sent globally for all Messaging channels of an acc
 The subscription to notification types is defined in the application manifest. You can modify the subscriptions and endpoints by using the Demo Connector <a href="https://connector-api.dev.liveperson.net/" target="_new"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>. Please make sure to only modify the application manifest on developer accounts.
 </aside>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h2 id='conversation-created'>Conversation created</h2>
 <blockquote>
 <p>A new conversation is created:</p>
@@ -1662,7 +1779,16 @@ The subscription to notification types is defined in the application manifest. Y
 </tr>
 </tbody></table>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h2 id='agent-joined'>Agent joined</h2>
 <blockquote>
 <p>Agent is added as a new participant to the conversation:</p>
@@ -1832,7 +1958,16 @@ The subscription to notification types is defined in the application manifest. Y
 </tr>
 </tbody></table>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h2 id='message-by-agent'>Message by agent</h2>
 <blockquote>
 <p>Agent sends text message</p>
@@ -1951,7 +2086,16 @@ The subscription to notification types is defined in the application manifest. Y
 A customer can be the originator of a message, and should hence be filtered from being displayed. For this it is required to know the participantId of the customer.
 </aside>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h2 id='skill-transfer'>Skill transfer</h2>
 <blockquote>
 <p>Conversation is transferred to another skill:</p>
@@ -2108,7 +2252,16 @@ A customer can be the originator of a message, and should hence be filtered from
 </tr>
 </tbody></table>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h2 id='conversation-closed-by-agent'>Conversation closed by agent</h2><pre class="highlight shell tab-shell"><code><span class="o">{</span>
    <span class="s2">"kind"</span>:<span class="s2">"notification"</span>,
    <span class="s2">"body"</span>:<span class="o">{</span>
@@ -2287,7 +2440,16 @@ A customer can be the originator of a message, and should hence be filtered from
 If your connector should work with post conversation surveys, it must support the multi-dialog client feature and track not only conversation but also dialog state changes <a href="https://developers.liveperson.com/messaging-window-api-tutorials-post-conversation-survey-pcs.html#multi-dialog-conversation" target="_new"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>.
 </aside>
 
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <script type="application/javascript">
     var Tooltips = document.getElementsByClassName('TooltipTrigger');
     for (var i = 0; i < Tooltips.length; i++) {
@@ -2314,7 +2476,64 @@ If your connector should work with post conversation surveys, it must support th
 
 <script type="text/javascript">
 window.lpDevAssist = window.lpDevAssist || {};
-window.lpDevAssist.sendFeedbackSimple = function (answer) {
+
+window.lpDevAssist.show = function (reply, element) {
+  var formDiv = element.parentNode.querySelector("div[name='feedbackDiv']");
+  if (formDiv) {
+    formDiv.style.display='block';
+    formDiv.style.marginTop='20px';
+  }
+  var replyInput = element.parentNode.querySelector("input[name='reply']");
+  if (replyInput) {
+    replyInput.value = reply;
+  }
+};
+
+window.lpDevAssist.submit = function (form) {
+  console.log(form);
+  var replyInput = form.querySelector("input[name='reply']");
+  var feedbackTextarea = form.querySelector("textarea[name='feedback']");
+  var formDiv = form.querySelector("div[name='feedbackDiv']");
+  var thankYouText = document.createTextNode("Thank you for your feedback!"); 
+  formDiv.appendChild(thankYouText);           
+  if (formDiv) {
+    setTimeout( function() {
+      formDiv.style.display='none'
+    }, 3000);
+  }
+  lpDevAssist.sendFeedbackSimple(replyInput.value, feedbackTextarea.value, form);
+  return false;
+};
+
+window.lpDevAssist.sendFeedbackSimple = function (reply, text, element) {
+  // find h1 and h2 nearby the element that was clicked;
+  var h1, h2, h3;
+  var el = element;
+  for (var i = 0; i < 25; i++) {
+    var prev = el; 
+    var parent = prev.parentElement;
+    console.log(prev);
+    while (el) {
+      var el = el.previousElementSibling;
+      console.log(el);
+      if (el && el.nodeName.toUpperCase() === "H1") {
+        h1 = el.firstChild.data;
+        console.log(h1);
+        break;
+      } else if (el && el.nodeName.toUpperCase() === "H2") {
+        h2 = el.firstChild.data;
+        console.log(h2);
+        break;
+      } else if (el && el.nodeName.toUpperCase() === "H3") {
+        h3 = el.firstChild.data;
+        console.log(h3);
+        break;
+      }
+    }
+    if (h1 || h2 || h3) break;
+    el = parent;
+  }
+  // send feedback
   var r = new XMLHttpRequest(); 
   r.open("POST", "https://c31ttcqad0.execute-api.us-east-2.amazonaws.com/alpha/helpful", true);
   r.setRequestHeader('Content-Type', 'application/json'); 
@@ -2326,8 +2545,10 @@ window.lpDevAssist.sendFeedbackSimple = function (answer) {
     }
     console.log("Success: " + r.responseText); 
   };
-  var data = JSON.stringify({"feedback":answer,"item":window.location});
-  r.send(data);  
+  var data = JSON.stringify({"reply":reply,"feedback":text,"uri":window.location,"h1":h1,"h2":h2,"h3":h3,"heading": h3 || h2 || h1});
+  console.log(data);
+  r.send(data);
+  return false;
 }
 </script>
 
