@@ -2561,13 +2561,12 @@ window.lpDevAssist.sendFeedbackSimple = function (reply, text, element) {
   r.setRequestHeader('Accept', 'application/json'); 
   r.onreadystatechange = function () { 
     if (r.status != 200) {
-      console.log("Failure: " + r); 
+      //console.log("Failure: " + r); 
       return; 
     }
-    console.log("Success: " + r.responseText); 
+    //console.log("Success: " + r.responseText); 
   };
   var data = JSON.stringify({"reply":reply,"feedback":text,"uri":window.location,"h1":h1,"h2":h2,"h3":h3,"heading": h3 || h2 || h1});
-  console.log(data);
   r.send(data);
   return false;
 }
@@ -2577,7 +2576,6 @@ window.lpDevAssist.queryServiceDomains = function () {
   var form = document.querySelector("form[name='serviceDomainsForm']")
   var accountInput = form.querySelector("input[name='account']");
   var tableName = "serviceDomainTable";
-  var testVar = 1;
 
   getAllServiceDomainsByAccount = function (accountId, callback) {
     var r = new XMLHttpRequest(); 
@@ -2636,7 +2634,6 @@ window.lpDevAssist.queryServiceDomains = function () {
     }
     table.appendChild(tableBody);
     form.parentNode.insertBefore(table, form.nextSibling);
-    console.log(testVar++);  
     return false;
   }
 
@@ -2677,7 +2674,7 @@ window.lpDevAssist.queryServiceDomains = function () {
    
    deleteTable();
    rows.sort(function (a, b) {
-     return a[0] > b[0];
+     return a[0].localeCompare(b[0])
    });
    createTable(rows); 
   }
