@@ -337,11 +337,14 @@
                   </li>
               </ul>
           </li>
-      </ul>
+      </ul> 
         <ul class="toc-footer">
             <li><a href='https://developers.liveperson.com'>LivePerson Developer Portal</a></li>
             <li><a href='https://knowledge.liveperson.com'>LivePerson Knowledge Center</a></li>
         </ul>
+      <div class="toc-list-h1">
+        <button type="button" style="margin: 15px 10px 15px 10px; padding: 2px 2px 2px 2px;" onclick="window.open('https://connector-api.dev.liveperson.net/','_blank')">Try the Demo Connector!</button>
+      </div> 
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
@@ -695,6 +698,13 @@ In the remainder of this tutorial, the LivePerson APIs listed below will be intr
 </tr>
 </tbody></table>
 
+<p><br/>
+The purpose of the Domain API <a href="https://developers.liveperson.com/retrieve-api-domains-using-the-domain-api.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a> is to retrieve the base URIs required to authenticate and communicate with Connector API, among others. Enter your account ID here to retrieve your base URIs: </p>
+
+<form name="serviceDomainsForm" style="margin-bottom: 1.5em">
+   Enter your account id: &emsp; <input name="account"></input> &emsp; <input type="button" onClick="return lpDevAssist.queryServiceDomains();" value="Get API domains"/> 
+</form>
+
 <aside class="warning">
  The Domain API is used for retrieving service domains, e.g., for authentication servers and for sending messages. For development purposes domains can be retrieved once, however, server domains can be subject to change.
 </aside>
@@ -875,7 +885,16 @@ Your connector should cache the JWT for its duration of validity. It is recommen
     <span class="s">"token"</span><span class="o">:</span> <span class="s">"eyJraWQiOiJhcHBqd3QtMTMtMDUtMTciLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhY2NvdW50X2lkIjoiNTMxMzg0NiIsImV4dF9jb25zdW1lcl9pZCI6InZmLXJhbmRvbV9pZDAuNjg5Mjc0NjIxNDM0MTM0MzI0IiwibHBfY29uc3VtZXJfaWQiOiJhYjMxNzNiZDAxY2IyMDAzMjM4YzM5NTI1ZjE5NDQ0MmM2YmQzMmM2YWYwZTZiYjAyZjY1ZGE2MWI5NmI1ZjIyIn0.SoHQAmoNqCxut73EEFgqYX1y5JOD4skDhGpzko8TMcFxFJnwJChvpKwGTRFIpBFfP0JPItqpKNUs7CrwtpZO4GCTZ9nRJXDMgJ6zpL_-8_aJTxDkryWLk4q1NdqJy7KMebFIRCmzGhcmRGiRcJbceqIgX4hkmcY_tSFLQjVk8_oSrw8w_sv1uarOvFn7q-1XX3bt2eTqJDlq1qT7tAwxiaLESWipjX9H3DajmcUlknTcmyLINAZ3FD5bDtKE6Q_wFM43TCK952kCbjUnJN9txblX-Z1D5LHuV3rsKKUYAYDq09A4_D5G8b3RZggF72llsDUc8JS2mFTrmpoh54hVcg"</span>
 <span class="o">}</span>
 </code></pre>
-<p><br/>Was this section helpful?&emsp; <a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(1, null, this)">Yes</a>&emsp;<a href="javascript:void(0)" onClick="lpDevAssist.sendFeedbackSimple(0, null, this)">No</a></p>
+<p><br/>
+<form onSubmit="return lpDevAssist.submit(this);">
+   Was this section helpful?&emsp; <button type="button" onClick="lpDevAssist.show(1, this)">Yes</button> &emsp; <button type="button" onClick="lpDevAssist.show(0, this)">No</button>
+   <div name="feedbackDiv" style="display: none;">
+      <p>Send us you feedback:</p>
+      <input type="hidden" name="reply"></input>
+      <textarea name="feedback" style="width: 400px; height: 150px;"></textarea><br/>
+      <button type="submit">Submit</button>
+   </div>
+</form></p>
 <h3 id='retrieve-a-jws'>Retrieve a JWS</h3>
 <p>Use the domain API to retrieve the domain of the LivePerson IDP service. The <code>accountId</code> is specified as a variable in the path.</p>
 <h3 id='request-2'>Request</h3>
@@ -2552,6 +2571,120 @@ window.lpDevAssist.sendFeedbackSimple = function (reply, text, element) {
   r.send(data);
   return false;
 }
+
+window.lpDevAssist.queryServiceDomains = function () {
+  
+  var form = document.querySelector("form[name='serviceDomainsForm']")
+  var accountInput = form.querySelector("input[name='account']");
+  var tableName = "serviceDomainTable";
+  var testVar = 1;
+
+  getAllServiceDomainsByAccount = function (accountId, callback) {
+    var r = new XMLHttpRequest(); 
+    r.open("POST", "https://c31ttcqad0.execute-api.us-east-2.amazonaws.com/alpha/domains", true);
+    r.setRequestHeader('Content-Type', 'application/json'); 
+    r.setRequestHeader('Accept', 'application/json'); 
+    r.onreadystatechange = function () { 
+      if (r.readyState === 4) { //DONE
+        if (r.status != 200) {
+          console.log("Failure: " + r); 
+          return; 
+        }
+        console.log("Success: " + r.responseText); 
+        if (callback) callback(r.responseText);
+      }
+    };
+    var data = JSON.stringify({"account":accountId});
+    r.send(data);
+    return false;
+ }
+
+  function deleteTable() {
+   var table = document.querySelector("table[name='"+tableName+"']");
+   if (table) table.parentNode.removeChild(table);
+  }
+  
+  function createTable(rows) {
+    // table
+    var table = document.createElement("table");
+    table.setAttribute("name", tableName);
+    // header
+    var header = document.createElement("thead");
+    var headerRow = document.createElement("tr");
+    header.append(headerRow);
+    var headerCol1 = document.createElement("th");
+    headerCol1.append(document.createTextNode("API Name"));
+    headerRow.append(headerCol1);
+    var headerCol2 = document.createElement("th");
+    headerCol2.append(document.createTextNode("Short name"));
+    headerRow.append(headerCol2);
+    var headerCol3 = document.createElement("th");
+    headerCol3.append(document.createTextNode("Base URI"));
+    headerRow.append(headerCol3);
+    table.append(header);
+    // body
+    var tableBody = document.createElement("tbody");
+    for (var r = 0; r < rows.length; r++) {
+      var row = document.createElement("tr");
+      for (var c = 0; c < rows[r].length; c++) {
+        var col = document.createElement("td");
+        var text = document.createTextNode(rows[r][c]);
+        col.appendChild(text);
+        row.appendChild(col);
+      }
+      tableBody.append(row);
+    }
+    table.appendChild(tableBody);
+    form.parentNode.insertBefore(table, form.nextSibling);
+    console.log(testVar++);  
+    return false;
+  }
+
+  function callback(data) {
+
+    var services = JSON.parse(data).body.baseURIs;
+    var rows = [];
+
+    for (var i = 0; i < services.length; i++) {
+
+      var uri = services[i].baseURI;
+      var row = null;
+
+      switch (services[i].service) {
+        case "idp" :
+           row = ["Customer JWS / IDP","idpDomain", uri];
+           break;
+        case "sentinel" :
+           row = ["Authentication service","authDomain", uri];
+           break;
+        case "asyncMessagingEnt" : 
+           row = ["Connector API","messagingDomain", uri];
+           break;
+        case "swift" : 
+           row = ["File Sharing API", "fileSharingDomain", uri];
+           break;
+        case "smt" : 
+           row = ["Monitoring API","monitoringDomain", uri];
+           break;
+        case "msgHist" : 
+           row = ["Consumer Messaging History API","historyDomain", uri];
+           break;   
+      } 
+
+      if (row) rows.push(row);
+
+    } 
+   
+   deleteTable();
+   rows.sort(function (a, b) {
+     return a[0] > b[0];
+   });
+   createTable(rows); 
+  }
+  
+  return getAllServiceDomainsByAccount(accountInput.value, callback);
+};
+
 </script>
 
 <!-- END isHelpful function --> 
