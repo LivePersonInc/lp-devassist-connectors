@@ -289,6 +289,9 @@
                   <li>
                     <a href="#close-conversation" class="toc-h2 toc-link" data-title="Close conversation">Close conversation</a>
                   </li>
+                  <li>
+                    <a href="#resume-a-closed-conversation" class="toc-h2 toc-link" data-title="Resume a closed conversation">Resume a closed conversation</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -350,7 +353,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Messaging connects your customers with human agents or bots. A key component is enabling conversations across Messaging apps&mdash;go where your customers are. As part of LivePerson&#39;s open platform we provide a growing number of out-of-the-box connectors, e.g., for SMS <a href="https://developers.liveperson.com/sms-with-liveengage-overview.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>, Facebook Messenger, WhatsApp, and others. In cases where an out-of-the-box solution is not available you can use LivePerson&#39;s APIs to build a custom connector.</p>
+<p>Messaging connects your consumers with human agents or bots. A key component is enabling conversations across Messaging apps&mdash;go where your consumers are. As part of LivePerson&#39;s open platform we provide a growing number of out-of-the-box connectors, e.g., for SMS <a href="https://developers.liveperson.com/sms-with-liveengage-overview.html"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>, Facebook Messenger, WhatsApp, and others. In cases where an out-of-the-box solution is not available you can use LivePerson&#39;s APIs to build a custom connector.</p>
 
 <p><br/>
 <form onSubmit="return lpDevAssist.submit(this);">
@@ -388,12 +391,20 @@ If you are not sure about developing a connector, please contact your account te
    </div>
 </form></p>
 <h2 id='about-messaging'>About Messaging</h2>
-<p>Messaging is centered around <span class="TooltipTrigger" data-tooltips="A conversation is an interactive communication between customer and  agent/bot. Its participants are exchanging text messages or other media. Messaging conversations are asynchronous by default. Synchronous interactions such as voice and video interactions are supported as well." data-position="OnBottom">conversations</span>. When a customer first connects to LiveEngage, they will do so by creating a conversation. A new conversation is assigned to an agent or bot. Not every Messaging app has a notion of conversation&mdash;in the case of SMS messages are of exchanged in a sequence. </p>
+<p>Messaging is centered around <span class="TooltipTrigger" data-tooltips="A conversation is an interactive communication between consumer and  agent/bot. Its participants are exchanging text messages or other media. Messaging conversations are asynchronous by default. Synchronous interactions such as voice and video interactions are supported as well." data-position="OnBottom">conversations</span>. When a consumer first connects to LiveEngage, they will do so by creating a conversation. A new conversation is assigned to an agent or bot. Not every Messaging app has a notion of conversation&mdash;in the case of SMS messages are of exchanged in a sequence. </p>
 
-<p>Conversations can be created or closed, and each customer can only have one open conversation at a time. Agents and bots, on the other hand, can respond to multiple conversations. A conversation is closed when it ends, e.g., the agent has resolved the case and closes the conversation. There are also cases when a conversation is closed automatically, for example, when a customer is no longer responding (&#39;auto close&#39;). Conversations can be split into dialogs of different types. The &#39;main&#39; dialog is the one that holds the actual messaging exchange, however, depending on the application there could be more dialog types such as CoBrowse or Survey.</p>
+<p>A conceptual data model of Messaging is depicted below:</p>
 
-<p>Customers, agents, agent managers, or bots are all identifiable participants in a conversation. Often customers are not only introduced using an ID but carry additional information, such as name and contact data. This information is sent by using 
- <span class="TooltipTrigger" data-tooltips="Engagement Attributes are specific customer information such as product viewed, purchase information, errors the visitor encountered, and search results. They can be collected before or during a conversation. Engagement Attributes are also referred to as SDEs (Standard Data Entity)" data-position="OnBottom">Engagement Attributes</span>.</p>
+<p><img src="images/abstract_data_model.png" title="Messaging - Conceptual Data Model" alt="mockup" /></p>
+
+<p>A conversation contains one or more dialogs. When a conversation is created a standard dialog of type <code>MAIN</code> is opened by default. Every conversation has exactly one consumer. A consumer can send messages to the open <code>MAIN</code> dialog. If a new conversation and dialog is created, Messaging will route to a bot or human agent. An agent can have an agent or manager role. While there can be only one consumer in an open dialog, there can be many agents or agent managers sending messages to the consumer. However, only one agent with the role &#39;agent&#39; be assigned to a dialog at a time.</p>
+
+<p>Conversations can be created or closed, and each consumer can only have one open conversation at a time. Agents and bots, on the other hand, can respond to multiple conversations. A conversation is closed when the dialog is completed, e.g., the agent has resolved the case and closes the conversation. There are also cases when a conversation is closed by the Messaging system, for example, when a consumer is no longer responding (&#39;auto close&#39;). </p>
+
+<p>Conversations can be split into dialogs of different types. The <code>MAIN</code> dialog is the one that holds the actual messaging exchange, however, depending on the application there could be more dialog types such as CoBrowse or Survey.</p>
+
+<p>Consumers, agents, agent managers, or bots are all identifiable participants in a conversation. Often consumers are not only introduced using an ID but carry additional information, such as name and contact data. This information is sent by using 
+ <span class="TooltipTrigger" data-tooltips="Engagement Attributes are specific consumer information such as product viewed, purchase information, errors the visitor encountered, and search results. They can be collected before or during a conversation. Engagement Attributes are also referred to as SDEs (Standard Data Entity)" data-position="OnBottom">Engagement Attributes</span>.</p>
 
 <p><br/>
 <form onSubmit="return lpDevAssist.submit(this);">
@@ -576,6 +587,10 @@ If you are not sure about developing a connector, please contact your account te
 Please reach out to your account team for first-time installation. Stay tuned for self-service installation in the near future!
 </aside>
 
+<p>You can define several Webhook applications for your account:</p>
+
+<p><img src="images/application_model.png" title="Messaging - Webhook Application" alt="application" /></p>
+
 <p>Your application is installed using a manifest specified in JSON. An example manifest is shown on the right. The following attibutes should be defined:</p>
 
 <table><thead>
@@ -715,15 +730,17 @@ The purpose of the Domain API <a href="https://developers.liveperson.com/retriev
 <p>To authenticate, use this code:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
-https://<span class="k">${</span><span class="nv">authDomain</span><span class="k">}</span>/sentinel/api/account/<span class="k">${</span><span class="nv">accountId</span><span class="k">}</span>/app/token?<span class="se">\</span>
-<span class="nv">v</span><span class="o">=</span>1.0&amp;grant_type<span class="o">=</span>client_credentials&amp;client_id<span class="o">=</span><span class="k">${</span><span class="nv">clientId</span><span class="k">}</span>&amp;client_secret<span class="o">=</span><span class="k">${</span><span class="nv">clientSecret</span><span class="k">}</span> <span class="se">\</span>
-  -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+  <span class="s1">'https://${authDomain}/sentinel/api/account/${accountId}/app/token?v=1.0'</span> <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+  -d <span class="s1">'grant_type=client_credentials&amp;client_id=${clientId}&amp;client_secret=${clientSecret}'</span>
 </code></pre><pre class="highlight java tab-java"><code><span class="n">OkHttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OkHttpClient</span><span class="o">();</span>
+<span class="n">MediaType</span> <span class="n">mediaType</span> <span class="o">=</span> <span class="n">MediaType</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"application/x-www-form-urlencoded"</span><span class="o">);</span>
+<span class="n">RequestBody</span> <span class="n">body</span> <span class="o">=</span> <span class="n">RequestBody</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">mediaType</span><span class="o">,</span> <span class="s">"grant_type=client_credentials&amp;client_id="</span><span class="o">+</span> <span class="n">clientId</span> <span class="o">+</span><span class="s">"&amp;client_secret="</span><span class="o">+</span> <span class="n">clientSecret</span><span class="o">);</span>
 
 <span class="n">Request</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Request</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
-  <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"https://"</span><span class="o">+</span> <span class="n">authDomain</span> <span class="o">+</span><span class="s">"/sentinel/api/account/"</span><span class="o">+</span> <span class="n">accountId</span> <span class="o">+</span><span class="s">"/app/token?v=1.0&amp;grant_type=client_credentials&amp;client_id="</span><span class="o">+</span> <span class="n">clientId</span><span class="o">+</span> <span class="s">"&amp;client_secret="</span><span class="o">+</span> <span class="n">clientSecret</span><span class="o">)</span>
-  <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="kc">null</span><span class="o">)</span>
-  <span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/x-www-form-urlencoded"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"https://"</span><span class="o">+</span> <span class="n">authDomain</span> <span class="o">+</span><span class="s">"/sentinel/api/account/"</span><span class="o">+</span> <span class="n">accountId</span> <span class="o">+</span><span class="s">"/app/token?v=1.0)
+  .post(body)
+  .addHeader("</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="s">", "</span><span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">urlencoded</span><span class="err">"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 
 <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">newCall</span><span class="o">(</span><span class="n">request</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
@@ -854,13 +871,13 @@ Your connector should cache the JWT for its duration of validity. It is recommen
 </tr>
 </tbody></table>
 <h1 id='consumer-identity'>Consumer identity</h1>
-<p>The JWT authorizes your connector to perform actions on behalf of a customer, e.g., to create conversations and send messages. The identity of the customer itself is defined in a JSON Web Signature (JWS). This token has to be obtained separately, and used in all subsequent requests for a specific customer.  </p>
+<p>The JWT authorizes your connector to perform actions on behalf of a consumer, e.g., to create conversations and send messages. The identity of the consumer itself is defined in a JSON Web Signature (JWS). This token has to be obtained separately, and used in all subsequent requests for a specific consumer.  </p>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
   <span class="s1">'https://${idpDomain}/api/account/${accountId}/consumer?v=1.0'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: ${JWT} \
   -H '</span>Content-Type: application/json<span class="s1">' \
   -d '</span><span class="o">{</span>
-    <span class="s2">"ext_consumer_id"</span>: <span class="s2">"</span><span class="k">${</span><span class="nv">customerId</span><span class="k">}</span><span class="s2">"</span>
+    <span class="s2">"ext_consumer_id"</span>: <span class="s2">"</span><span class="k">${</span><span class="nv">consumerId</span><span class="k">}</span><span class="s2">"</span>
   <span class="o">}</span><span class="s1">'
 </span></code></pre><pre class="highlight java tab-java"><code><span class="n">OkHttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OkHttpClient</span><span class="o">();</span>
 
@@ -916,7 +933,7 @@ Your connector should cache the JWT for its duration of validity. It is recommen
 </tr>
 </tbody></table>
 <h4 id='request-body'>Request body</h4>
-<p>The request body defines the customer&#39;s id in <code>ext_consumer_id</code>:</p>
+<p>The request body defines the consumer&#39;s id in <code>ext_consumer_id</code>:</p>
 <h3 id='response-2'>Response</h3>
 <p>If the request is successful a HTTPS 201 <code>Created</code> is returned with the JWS <code>token</code> in the body.</p>
 <h3 id='use-the-jws'>Use the JWS</h3>
@@ -1073,7 +1090,7 @@ A JWS does not expire and should be cached by your connector implementation.
     <span class="o">}</span>
 <span class="o">]</span>
 </code></pre>
-<p>A new conversation is created by sending a HTTPS POST request to the Connector API <code>/conversation</code> endpoint. The URL includes the domain of the Messaging Service and the <code>accountId</code>. The query parameter <code>v=3</code> specifies the API version. In the HTTP headers both the authentication JWT and customer JWS must be included. </p>
+<p>A new conversation is created by sending a HTTPS POST request to the Connector API <code>/conversation</code> endpoint. The URL includes the domain of the Messaging Service and the <code>accountId</code>. The query parameter <code>v=3</code> specifies the API version. In the HTTP headers both the authentication JWT and consumer JWS must be included. </p>
 
 <p>Every event has a <code>type</code> and an <code>id</code>. To generate the <code>id</code> in each request please use a UUID library of your choice to automatically generate an ID that adheres to the Universally Unique Identifier (UUID) v4 standard.</p>
 
@@ -1137,10 +1154,10 @@ To find the `messagingDomain` domain, please use the Domain API with your accoun
 
 <p>The allowed Engagement Attributes are <code>ctmrinfo</code> <a href="https://developers.liveperson.com/data-access-api-methods-web-session.html#engagement-attribute-type---customer-info"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a> and <code>personal</code> <a href="https://developers.liveperson.com/data-access-api-methods-web-session.html#engagement-attribute-type---personal-info"><i class="fas fa-external-link-alt" style="color:darkgray;"></i></a>.</p>
 <h3 id='response-3'>Response</h3>
-<p>If successsul a 200 response is returned with a JSON array in the same order as the events in the request. In the second response object the <code>conversationId</code>is wrapped as part of the body. The connector will subsequently use this <code>conversationId</code> for in all messages for this customer.</p>
+<p>If successsul a 200 response is returned with a JSON array in the same order as the events in the request. In the second response object the <code>conversationId</code>is wrapped as part of the body. The connector will subsequently use this <code>conversationId</code> for in all messages for this consumer.</p>
 
 <aside class="warning">
-The conversation id for a customer is managed by the connector. There can be cases where a conversation has been closed not by the connector but by an agent or the system. In this case, a new conversation has to be created. 
+The conversation id for a consumer is managed by the connector. There can be cases where a conversation has been closed not by the connector but by an agent or the system. In this case, a new conversation has to be created. 
 </aside>
 <h2 id='create-a-conversation-with-skill-routing'>Create a conversation with skill routing</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
   <span class="s1">'https://${messagingDomain}/api/account/${accountId}/messaging/consumer/conversation?v=3'</span> <span class="se">\</span>
@@ -1216,7 +1233,7 @@ The conversation id for a customer is managed by the connector. There can be cas
     <span class="o">}</span>
 <span class="o">]</span>
 </code></pre>
-<p>Skill routing is decided upon conversation creation. If you are planning to route a customer to a specific skill then you should use a campaign with engagement for this.  </p>
+<p>Skill routing is decided upon conversation creation. If you are planning to route a consumer to a specific skill then you should use a campaign with engagement for this.  </p>
 
 <p>It is recommended to set up skill routing with an engagement and campaign. For this, it is required to add a <code>conversationContext</code> object to the request. It specifies the <code>engagementId</code> and <code>campaignId</code>. If you do not have a campaign defined yet, you should create one for the connector. </p>
 
@@ -1323,7 +1340,7 @@ Please note: A campaign and engagement when creating a conversation is a prerequ
     <span class="s">"reqId"</span><span class="o">:</span> <span class="s">"c4255004-9c50-4405-8cba-475d761fab1b"</span>
 <span class="o">}</span>
 </code></pre>
-<p>A custom connector can close a conversation at any time. Typically, conversations are closed when the customer&#39;s request is resolved. Because many Messaging apps do not have a notion of &quot;close&quot; or &quot;resolve&quot; you may choose not to close conversations by the connector at all. However, it is still possible that an agent or the system closes a conversation state&mdash;conversation state changes by other participants are tracked by analyzing Webhook notifcations.</p>
+<p>A custom connector can close a conversation at any time. Typically, conversations are closed when the consumer&#39;s request is resolved. Because many Messaging apps do not have a notion of &quot;close&quot; or &quot;resolve&quot; you may choose not to close conversations by the connector at all. However, it is still possible that an agent or the system closes a conversation state&mdash;conversation state changes by other participants are tracked by analyzing Webhook notifcations.</p>
 
 <p><br/>
 <form onSubmit="return lpDevAssist.submit(this);">
@@ -1375,6 +1392,26 @@ Please note: A campaign and engagement when creating a conversation is a prerequ
 </tbody></table>
 <h3 id='response-4'>Response</h3>
 <p>If successsul a <code>200 OK</code> response is returned with <code>code=&quot;OK&quot;</code> in the JSON response body.</p>
+<h2 id='resume-a-closed-conversation'>Resume a closed conversation</h2>
+<blockquote>
+<p>You get the following error message when trying to send a message into a closed conversation:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>
+    <span class="s2">"code"</span>: <span class="s2">"BAD_REQUEST"</span>,
+    <span class="s2">"body"</span>: <span class="o">{</span>
+        <span class="s2">"msg"</span>: <span class="s2">"Bad Request, Conversation is close"</span>
+    <span class="o">}</span>,
+    <span class="s2">"reqId"</span>: <span class="s2">"c4255004-9c50-4405-8cba-475d761fab1b"</span>
+<span class="o">}</span>
+</code></pre><pre class="highlight java tab-java"><code>
+    <span class="s">"code"</span><span class="o">:</span> <span class="s">"BAD_REQUEST"</span><span class="o">,</span>
+    <span class="s">"body"</span><span class="o">:</span> <span class="o">{</span>
+        <span class="s">"msg"</span><span class="o">:</span> <span class="s">"Bad Request, Conversation is close"</span>
+    <span class="o">},</span>
+    <span class="s">"reqId"</span><span class="o">:</span> <span class="s">"c4255004-9c50-4405-8cba-475d761fab1b"</span>
+<span class="o">}</span>
+</code></pre>
+<p>A conversation can be closed by consumer, agent, or automatically closed by the Messaging system. State changes are tracked by your WebHook endpoint listening to <code>cqm.ExConversationChangeNotification</code>. When a state change is observed, update the client&#39;s internal state accordingly. If your client has not updated its internal state but tries to send a consumer message, it will receive a <code>BAD_REQUEST</code> error message. In this case, it is required to open a new conversation to send new messages.</p>
 <h1 id='send-a-message'>Send a message</h1>
 <blockquote>
 <p>Send a plain text message:</p>
@@ -1536,7 +1573,7 @@ Request request = new Request.Builder()
 The size of the JSON request object cannot exceed 5000 characters. If a message exceeds the maximum size a `400 Bad Request` response will be returned.
 </aside>
 <h1 id='webhooks'>Webhooks</h1>
-<p>Connector API <code>/conversation</code> and <code>/send</code> endpoints provide you with the means to send customer messages to LiveEngage Messaging. If you want to receive updates on a conversation, e.g. messages sent by an agent, you have to expose a public HTTPS POST Webhook endpoint to receive those notifications. </p>
+<p>Connector API <code>/conversation</code> and <code>/send</code> endpoints provide you with the means to send consumer messages to LiveEngage Messaging. If you want to receive updates on a conversation, e.g. messages sent by an agent, you have to expose a public HTTPS POST Webhook endpoint to receive those notifications. </p>
 
 <p><br/>
 <form onSubmit="return lpDevAssist.submit(this);">
@@ -1613,11 +1650,11 @@ The Webhook notifications are sent globally for all Messaging channels of an acc
 </thead><tbody>
 <tr>
 <td>cqm.ExConversationChangeNotification</td>
-<td>Notification on conversation state changes, e.g. a conversation is created, a participant (customer or agent) has changed, a conversation is closed, or the CSAT score is updated.</td>
+<td>Notification on conversation state changes, e.g. a conversation is created, a participant (consumer or agent) has changed, a conversation is closed, or the CSAT score is updated.</td>
 </tr>
 <tr>
 <td>ms.MessagingEventNotification.ContentEvent</td>
-<td>Notification on text-based messages in a conversation. This includes messages by all participants, agents <strong>and</strong> customers.</td>
+<td>Notification on text-based messages in a conversation. This includes messages by all participants, agents <strong>and</strong> consumers.</td>
 </tr>
 <tr>
 <td>ms.MessagingEventNotification.RichContentEvent</td>
@@ -2102,7 +2139,7 @@ The subscription to notification types is defined in the application manifest. Y
 </tbody></table>
 
 <aside class="success">
-A customer can be the originator of a message, and should hence be filtered from being displayed. For this it is required to know the participantId of the customer.
+A consumer can be the originator of a message, and should hence be filtered from being displayed. For this it is required to know the participantId of the consumer.
 </aside>
 
 <p><br/>
